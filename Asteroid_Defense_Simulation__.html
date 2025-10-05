@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asteroid Defense Simulator — No Zoom/Pan Recenter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --panel-bg: rgba(13,17,23,0.84); --accent:#00e676; --accent2:#2196f3; }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%; margin: 0; overflow: hidden;
+      background: #0b0f17; color: #e0f2f1;
+      font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+      font-size: clamp(12px, 1vw, 16px);
+    }
+    #info-panel {
+      position: absolute; top: 2vh; left: 2vw;
+      width: clamp(260px, 28vw, 560px);
+      max-height: 80vh; overflow-y: auto;
+      background: var(--panel-bg);
+      border: 1px solid var(--accent);
+      border-radius: 1em; padding: 1.2em;
+      display: none; opacity: 0; transition: opacity .6s ease;
+      box-shadow: 0 0 2.4em rgba(0,0,0,0.45);
+      z-index: 10;
+    }
+    #controls-panel {
+      position: absolute; bottom: 3vh; right: 2vw;
+      width: clamp(200px, 22vw, 320px);
+      display: flex; flex-direction: column; gap: 1vh;
+      background: var(--panel-bg);
+      border: 1px solid #1f2a37; border-radius: 1em;
+      padding: 1em; opacity: .95; transition: opacity .6s ease;
+      box-shadow: 0 0 2em rgba(0,0,0,0.45); z-index: 10;
+    }
+    select, button {
+      width: 100%;
+      padding: .8em 1em;
+      border-radius: .7em; border: 2px solid #2b3b4e;
+      background: #0f1722; color: #e0f2f1;
+      font-weight: 700; cursor: pointer;
+    }
+    .control-button:hover { border-color: var(--accent2); }
+    #status-bar {
+      position: absolute; left: 2vw; bottom: 2vh;
+      width: clamp(240px, 36vw, 560px);
+      background: var(--panel-bg);
+      border: 1px solid #1f2a37; border-radius: .7em;
+      padding: .7em 1em; opacity: .9; z-index: 10;
+      font-size: clamp(11px,.9vw,14px);
+    }
+    .impact-box, .env-box, .plan-box {
+      margin-top: 1em; padding: 1em; border-radius: .8em; line-height: 1.45;
+    }
+    .impact-box { background: rgba(255,255,255,.05); border-left: 3px solid #ff9800; }
+    .env-box { background: rgba(33,150,243,.08); border-left: 3px solid #2196f3; }
+    .plan-box { background: rgba(0,230,118,.06); border-left: 4px solid var(--accent); }
+    .plan-box h4 { margin:.2em 0 .4em; color:#7cf6b1; }
+    .badge {display:inline-block;padding:.2em .6em;border-radius:999px;font-size:.85em;font-weight:700}
+    .ok{background:#093}.warn{background:#b30}
+  </style>
+</head>
+<body>
+  <div id="info-panel"></div>
+  <div id="controls-panel">
+    <select id="deflection-method" title="Choose a mitigation technique">
+      <option value="Kinetic Impactor">Kinetic Impactor</option>
+      <option value="Gravity Tractor">Gravity Tractor</option>
+      <option value="Nuclear Detonation">Nuclear Detonation</option>
+    </select>
+    <button id="deflect-button" class="control-button" disabled>Deflect</button>
+    <button id="reset-button" class="control-button">Reset Simulation</button>
+    <button id="back-button" class="control-button" style="display:none;">Return to Orbit View</button>
+  </div>
+  <div id="status-bar">Tip: Click any asteroid to enter Shooter View. Click another asteroid to switch, or use “Return to Orbit View”.</div>
+
+  <script>
+    const NEO_DATA = [
+      {"name":"2025 SZ27","diameter_km":2.8,"velocity_kms":18.2,"distance_km":380000,"angle_deg":45,"radius":1.4,"orbitalRadius":80,"orbitalSpeed":0.008,"impact":"Localized airburst possible.","color":0x8D6E63},
+      {"name":"2025 SY10","diameter_km":1.9,"velocity_kms":12.5,"distance_km":520000,"angle_deg":45,"radius":0.95,"orbitalRadius":100,"orbitalSpeed":0.006,"impact":"Regional shockwave and thermal pulse.","color":0x795548},
+      {"name":"2025 TO","diameter_km":0.9,"velocity_kms":9.8,"distance_km":240000,"angle_deg":45,"radius":0.45,"orbitalRadius":70,"orbitalSpeed":0.004,"impact":"Airburst—minor ground effects.","color":0xBDBDBD},
+      {"name":"2025 SO27","diameter_km":1.2,"velocity_kms":11.4,"distance_km":420000,"angle_deg":45,"radius":0.6,"orbitalRadius":120,"orbitalSpeed":0.005,"impact":"Localized damage possible.","color":0x90A4AE},
+      {"name":"2019 UH7","diameter_km":1.1,"velocity_kms":21.7,"distance_km":600000,"angle_deg":45,"radius":0.55,"orbitalRadius":140,"orbitalSpeed":0.009,"impact":"Fast mover; tracking difficulty.","color":0x607D8B},
+      {"name":"2018 KC","diameter_km":1.0,"velocity_kms":8.1,"distance_km":580000,"angle_deg":45,"radius":0.5,"orbitalRadius":160,"orbitalSpeed":0.006,"impact":"Likely atmospheric burn-up.","color":0x455A64},
+      {"name":"2017 WG14","diameter_km":3.5,"velocity_kms":16.2,"distance_km":720000,"angle_deg":45,"radius":1.75,"orbitalRadius":200,"orbitalSpeed":0.0053,"impact":"Significant regional threat.","color":0xFF5722},
+      {"name":"2020 VK4","diameter_km":0.7,"velocity_kms":6.9,"distance_km":560000,"angle_deg":45,"radius":0.35,"orbitalRadius":220,"orbitalSpeed":0.003,"impact":"Negligible; minimal risk.","color":0xB0BEC5},
+      {"name":"2022 AX4","diameter_km":2.4,"velocity_kms":14.1,"distance_km":640000,"angle_deg":45,"radius":1.2,"orbitalRadius":240,"orbitalSpeed":0.007,"impact":"Tunguska-like potential.","color":0x9C27B0},
+      {"name":"2015 QE9","diameter_km":2.9,"velocity_kms":15.0,"distance_km":780000,"angle_deg":45,"radius":1.45,"orbitalRadius":260,"orbitalSpeed":0.0045,"impact":"Major blast & thermal zone.","color":0x4CAF50}
+    ];
+
+    const DENSITY_KG_M3 = 3000, JOULES_PER_MT = 4.184e15, AMBER=0xFFA000;
+    const TECH = {
+      kinetic: { success: 0.70, radiusMult: 1.35, uiColor: 0xFF9800 },
+      nuclear: { success: 0.85, radiusMult: 1.90, uiColor: 0xFF0000 },
+      gravity: { success: 0.92, radiusMult: 1.15, uiColor: 0x2196F3 }
+    };
+    const VISUAL_SCALE = 3.0;
+
+    let scene, camera, renderer, controls, raycaster;
+    let asteroids=[], selected=null, inShooter=false;
+    const clock=new THREE.Clock();
+
+    init(); animate();
+
+    function init(){
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 4000);
+      camera.position.set(0, 220, 420);
+
+      renderer = new THREE.WebGLRenderer({antialias:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+      renderer.setSize(innerWidth, innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Bright, three-point-ish lighting so nothing is dark
+      scene.add(new THREE.AmbientLight(0x808080, 2.0));
+      const key=new THREE.DirectionalLight(0xfff6d5, 2.6); key.position.set(220,200,140); scene.add(key);
+      const fill=new THREE.PointLight(0x88baff, 1.5, 1800); fill.position.set(-320,-120,-260); scene.add(fill);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true; controls.dampingFactor = 0.06;
+
+      const earth = new THREE.Mesh(new THREE.SphereGeometry(30,48,48), new THREE.MeshPhongMaterial({color:0x2a83ff, specular:0x335, shininess:35}));
+      scene.add(earth);
+      addStars(900,1600);
+
+      raycaster = new THREE.Raycaster();
+      window.addEventListener('click', onPick);
+      window.addEventListener('resize', onResize);
+
+      NEO_DATA.forEach(d=>{
+        const geo = new THREE.IcosahedronGeometry(Math.max(1.0, d.radius*1.8*VISUAL_SCALE),1);
+        const mat = new THREE.MeshStandardMaterial({color:d.color,roughness:0.9,metalness:0.1,flatShading:true});
+        const m = new THREE.Mesh(geo,mat);
+        m.userData={...d, angle:Math.random()*Math.PI*2, originalSpeed:d.orbitalSpeed, orbitLine:createOrbitLine(d.orbitalRadius,0x00E676), deflectionLine:null, env:computeEnv(d)};
+        m.position.set(d.orbitalRadius*Math.cos(m.userData.angle),0,d.orbitalRadius*Math.sin(m.userData.angle));
+        scene.add(m); scene.add(m.userData.orbitLine);
+        asteroids.push(m);
+      });
+
+      document.getElementById('reset-button').addEventListener('click', ()=>location.reload());
+      document.getElementById('deflect-button').addEventListener('click', deflectSelected);
+      document.getElementById('back-button').addEventListener('click', backToOrbit);
+    }
+
+    function addStars(count=700, radius=1500){
+      const g=new THREE.BufferGeometry(); const pos=new Float32Array(count*3);
+      for(let i=0;i<count;i++){const r=radius*(.5+Math.random()*.5), t=Math.random()*Math.PI*2, p=Math.acos(2*Math.random()-1);
+        pos[i*3]=r*Math.sin(p)*Math.cos(t);
+        pos[i*3+1]=r*Math.sin(p)*Math.sin(t)*.35;
+        pos[i*3+2]=r*Math.cos(p);}
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+      scene.add(new THREE.Points(g,new THREE.PointsMaterial({size:2,color:0x99bbff})));
+    }
+
+    function createOrbitLine(radius,color){
+      const seg=160, pos=[]; for(let i=0;i<=seg;i++){const t=i/seg*Math.PI*2; pos.push(radius*Math.cos(t),0,radius*Math.sin(t));}
+      const g=new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+      const m=new THREE.LineBasicMaterial({color,transparent:true,opacity:.7});
+      const line=new THREE.Line(g,m); line.visible=false; return line;
+    }
+
+    function onResize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); }
+
+    function onPick(e){
+      const mouse=new THREE.Vector2((e.clientX/innerWidth)*2-1, -(e.clientY/innerHeight)*2+1);
+      raycaster.setFromCamera(mouse, camera);
+      const hits=raycaster.intersectObjects(asteroids);
+      if(!hits.length) return;
+      const next=hits[0].object;
+
+      if(selected && selected!==next){
+        selected.userData.orbitLine.visible=false;
+        if(selected.userData.deflectionLine) selected.userData.deflectionLine.visible=false;
+      }
+      selected=next;
+      showInfo(selected.userData);
+      selected.userData.orbitLine.visible=true;
+      if(selected.userData.deflectionLine) selected.userData.deflectionLine.visible=true;
+
+      focusNoRecenter(selected);
+      document.getElementById('deflect-button').disabled=false;
+      document.getElementById('back-button').style.display='block';
+    }
+
+    // —— NO ZOOM, NO PAN RECENTER — keep camera-target offset constant ——
+    function focusNoRecenter(obj){
+      inShooter=true;
+      const oldTarget = controls.target.clone();
+      const newTarget = obj.position.clone();
+      const delta = newTarget.clone().sub(oldTarget);
+      // Move camera by the same delta so distance & orientation remain identical
+      camera.position.add(delta);
+      controls.target.copy(newTarget);
+      controls.update();
+      document.getElementById('status-bar').innerHTML = '<span class="badge ok">OK</span> Shooter View: '+obj.userData.name+' — click another asteroid to switch';
+    }
+
+    function backToOrbit(){
+      inShooter=false;
+      const oldTarget = controls.target.clone();
+      const newTarget = new THREE.Vector3(0,0,0);
+      const delta = newTarget.clone().sub(oldTarget);
+      camera.position.add(delta);      // keep the same relative offset
+      controls.target.copy(newTarget); // back to origin
+      controls.update();
+
+      document.getElementById('back-button').style.display='none';
+      const el=document.getElementById('info-panel');
+      el.style.opacity = 0; setTimeout(()=>{ el.style.display='none'; }, 600);
+      document.getElementById('status-bar').textContent = "Tip: Click any asteroid to enter Shooter View. Click another asteroid to switch, or use “Return to Orbit View”.";
+      document.getElementById('deflect-button').disabled = true;
+    }
+
+    // —— Env calcs ——
+    function computeEnv(d){
+      const D_km=Math.max(0.01,d.diameter_km||d.diameter_kms||1.0);
+      const v_kms=Math.max(1,d.velocity_kms||10.0);
+      const angle=Math.max(5,Math.min(90,d.angle_deg||45));
+      const D_m=D_km*1000; const mass=(Math.PI/6)*Math.pow(D_m,3)*DENSITY_KG_M3;
+      const v_ms=v_kms*1000; const E_J=0.5*mass*v_ms*v_ms; const E_MT=E_J/JOULES_PER_MT;
+      const airburstLikely=(D_km<0.05)||(angle<25&&D_km<0.15);
+      const outcome=airburstLikely?"Airburst likely":"Surface impact likely";
+      const crater_radius_km= outcome==="Surface impact likely" ? 0.65*Math.pow(Math.max(1,E_MT),1/3.4) : 0;
+      const r_5psi_km=2.8*Math.pow(Math.max(1,E_MT),1/3), r_thermal_km=3.5*Math.pow(Math.max(1,E_MT),0.4);
+      const env_notes= airburstLikely ? "Blast wave & thermal pulse aloft; shattered windows; limited crater formation."
+                                      : "Crater, ejecta fallout, intense thermal radiation; regional seismic shaking.";
+      return {energyMT:E_MT,outcome,craterRadiusKm:crater_radius_km,overpressure5psiKm:r_5psi_km,thermalRadiusKm:r_thermal_km,notes:env_notes};
+    }
+
+    function renderActionPlan(){
+      return `<div class="plan-box">
+        <h4>Recommended Action Plan</h4>
+        <p><b>Policy:</b> Maintain continuous international cataloging; mandate 24‑hour disclosure of new NEOs; rapid re‑fit of orbits that enter potential impact corridors; fund early‑warning sensors for sub‑100 m objects.</p>
+        <p><b>Emergency:</b> Use a global alert ladder (Detection→Verification→Alert→Civil Defense); broadcast window‑safety/airburst guidance; pre‑stage response teams near projected corridors; integrate with existing disaster frameworks.</p>
+        <p><b>Science:</b> Continue radar/spectroscopy for density & spin; run deflection design studies with live parameters; keep mission data open (DART/OSIRIS‑REx) for validation; refine impact‑energy scaling with sensor records.</p>
+      </div>`;
+    }
+
+    function showInfo(d){
+      const el=document.getElementById('info-panel');
+      const env=d.env||computeEnv(d);
+      const craterLine = env.craterRadiusKm>0 ? `Est. crater radius: ${env.craterRadiusKm.toFixed(2)} km<br>` : '';
+      el.innerHTML = `
+        <h3 style="color:var(--accent); margin:0 0 .6em;">${d.name}</h3>
+        <div><b>Diameter:</b> ${d.diameter_km||d.diameter_kms||'-'} km</div>
+        <div><b>Velocity:</b> ${d.velocity_kms||'-'} km/s</div>
+        <div><b>Distance:</b> ${d.distance_km?d.distance_km.toLocaleString():'-'} km</div>
+        <div><b>Entry Angle:</b> ${d.angle_deg||45}°</div>
+        <div class="impact-box"><b>Impact Effects (dataset):</b><br>${d.impact||'—'}</div>
+        <div class="env-box">
+          <b>Environmental Estimates (sim):</b><br>
+          Energy: ${env.energyMT.toFixed(2)} MT TNT<br>
+          Outcome: ${env.outcome}<br>
+          ${craterLine}
+          5 psi overpressure radius: ${env.overpressure5psiKm.toFixed(1)} km<br>
+          Thermal (2nd-degree burns) radius: ${env.thermalRadiusKm.toFixed(1)} km<br>
+          <i>${env.notes}</i>
+        </div>
+        ${renderActionPlan()}
+        <div style="margin-top:.6em;color:#9cc;">Shooter View — click another asteroid to switch, or use "Return to Orbit View".</div>`;
+      el.style.display='block'; requestAnimationFrame(()=>{ el.style.opacity=1; });
+    }
+
+    // Deflection (same visuals; unaffected by camera behavior)
+    function normMethodLabel(txt){ const s=(txt||'').toLowerCase(); if(s.includes('nuclear'))return'nuclear'; if(s.includes('gravity'))return'gravity'; return'kinetic'; }
+    function deflectSelected(){
+      if(!selected) return;
+      const key=normMethodLabel(document.getElementById('deflection-method').value);
+      const cfg=TECH[key]; const hit=selected;
+      const orig=hit.userData.originalSpeed||hit.userData.orbitalSpeed;
+      hit.userData.originalSpeed=orig; hit.userData.orbitalSpeed=Math.max(0.002, orig*5);
+      const after=()=>{
+        const success=Math.random()<cfg.success;
+        if(success){
+          const newR=hit.userData.orbitalRadius*cfg.radiusMult;
+          if(hit.userData.deflectionLine) scene.remove(hit.userData.deflectionLine);
+          const dl=createOrbitLine(newR, AMBER); dl.visible=true; scene.add(dl);
+          hit.userData.deflectionLine=dl; hit.userData.orbitalRadius=newR;
+          const env=hit.userData.env||computeEnv(hit.userData);
+          banner(hit.userData.name+": DEFLECTED — avoided ~"+env.energyMT.toFixed(1)+" MT, 5 psi ~"+env.overpressure5psiKm.toFixed(0)+" km");
+        } else { cameraShake(); banner(hit.userData.name+": DEFLECTION FAILED — risk persists", false); }
+        asteroids.forEach(a=>{ const base=a.userData.originalSpeed||a.userData.orbitalSpeed; a.userData.orbitalSpeed=Math.max(0.002, base); });
+      };
+      if(key==='nuclear') playNuclearFX(hit, after);
+      else if(key==='gravity') playGravityFX(hit, after);
+      else playKineticFX(hit, after);
+    }
+    function cameraShake(){ const o=camera.position.clone(); const dur=500, mag=5, t0=performance.now();
+      function step(t){ const dt=t-t0; if(dt<dur){ camera.position.x=o.x+(Math.random()-.5)*mag; camera.position.y=o.y+(Math.random()-.5)*mag; camera.position.z=o.z+(Math.random()-.5)*mag; requestAnimationFrame(step);} else camera.position.copy(o); } requestAnimationFrame(step); }
+    function banner(text, ok=true){ const bar=document.getElementById('status-bar'); bar.innerHTML=(ok?'<span class="badge ok">OK</span>':'<span class="badge warn">FAIL</span>')+' '+text; }
+
+    // FX
+    function playKineticFX(hit, done){ const clk=new THREE.Clock(); const pos=hit.position.clone();
+      const flash=new THREE.Mesh(new THREE.SphereGeometry(2,16,16), new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.95})); flash.position.copy(pos); scene.add(flash);
+      const n=180, arr=new Float32Array(n*3), v=[]; for(let i=0;i<n;i++){arr[i*3]=pos.x;arr[i*3+1]=pos.y;arr[i*3+2]=pos.z; v.push(new THREE.Vector3((Math.random()-.5)*2,(Math.random()-.2)*1.6,(Math.random()-.5)*2));}
+      const g=new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(arr,3));
+      const pts=new THREE.Points(g,new THREE.PointsMaterial({color:0xffd180,size:2,transparent:true,opacity:.95,blending:THREE.AdditiveBlending})); scene.add(pts);
+      (function tick(){ const dt=clk.getDelta(); flash.scale.multiplyScalar(1+6*dt); flash.material.opacity=Math.max(0,flash.material.opacity-1.5*dt);
+        const a=pts.geometry.attributes.position.array; for(let i=0;i<n;i++){const ve=v[i]; a[i*3]+=ve.x; a[i*3+1]+=ve.y; a[i*3+2]+=ve.z; ve.multiplyScalar(.96);} pts.geometry.attributes.position.needsUpdate=true; pts.material.opacity=Math.max(0,pts.material.opacity-1.2*dt);
+        if(pts.material.opacity>0.03) requestAnimationFrame(tick); else {scene.remove(flash);scene.remove(pts); g.dispose(); done&&done();}})(); }
+    function playNuclearFX(hit, done){ const clk=new THREE.Clock(); const grp=new THREE.Group(); const pos=hit.position.clone();
+      const core=new THREE.Mesh(new THREE.SphereGeometry(3,24,24), new THREE.MeshBasicMaterial({color:0xffffcc,transparent:true,opacity:1,blending:THREE.AdditiveBlending})); core.position.copy(pos); grp.add(core);
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(3,48,48), new THREE.MeshBasicMaterial({color:0xffaa00,wireframe:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending})); shell.position.copy(pos); grp.add(shell);
+      const rG=new THREE.BufferGeometry(); const R=140, arr=new Float32Array(R*6);
+      for(let i=0;i<R;i++){const a=Math.random()*Math.PI*2, e=(Math.random()-.5)*Math.PI/3; const d=new THREE.Vector3(Math.cos(a)*Math.cos(e),Math.sin(e),Math.sin(a)*Math.cos(e));
+        arr.set([pos.x,pos.y,pos.z,pos.x+d.x*2,pos.y+d.y*2,pos.z+d.z*2], i*6);} rG.setAttribute('position', new THREE.BufferAttribute(arr,3));
+      const rays=new THREE.LineSegments(rG,new THREE.LineBasicMaterial({color:0xffee88,transparent:true,opacity:.95,blending:THREE.AdditiveBlending})); grp.add(rays); scene.add(grp);
+      (function tick(){ const dt=clk.getDelta(); core.scale.multiplyScalar(1+8*dt); core.material.opacity=Math.max(0,core.material.opacity-2.2*dt); shell.scale.multiplyScalar(1+18*dt); shell.material.opacity=Math.max(0,shell.material.opacity-1.4*dt); rays.material.opacity=Math.max(0,rays.material.opacity-1.6*dt);
+        if(rays.material.opacity>0.03) requestAnimationFrame(tick); else {scene.remove(grp); core.geometry.dispose(); shell.geometry.dispose(); rG.dispose(); done&&done();}})(); }
+    function playGravityFX(hit, done){ const clk=new THREE.Clock();
+      const craft=new THREE.Mesh(new THREE.ConeGeometry(1.2,3,12), new THREE.MeshPhongMaterial({color:0x90caf9,emissive:0x0a2540,shininess:80}));
+      craft.position.copy(hit.position).add(new THREE.Vector3(4,3,0)); craft.rotation.z=Math.PI/2; scene.add(craft);
+      const beam=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.6,6,16,1,true), new THREE.MeshBasicMaterial({color:0x64b5f6,transparent:true,opacity:.65,blending:THREE.AdditiveBlending,side:THREE.DoubleSide}));
+      beam.position.copy(hit.position).add(new THREE.Vector3(2,2,0)); beam.rotation.x=Math.PI/2; scene.add(beam);
+      (function tick(){ const t=clk.getElapsedTime(), r=4; craft.position.x=hit.position.x+Math.cos(t*2)*r; craft.position.z=hit.position.z+Math.sin(t*2)*r; craft.position.y=hit.position.y+2+Math.sin(t*3)*.5; beam.material.opacity=.45+Math.sin(t*6)*.25;
+        if(t<4.5) requestAnimationFrame(tick); else {scene.remove(craft);scene.remove(beam); done&&done();}})(); }
+
+    function animate(){ requestAnimationFrame(animate);
+      const dt=clock.getDelta();
+      asteroids.forEach(a=>{ a.userData.angle += a.userData.orbitalSpeed*dt*60; a.position.x=a.userData.orbitalRadius*Math.cos(a.userData.angle); a.position.z=a.userData.orbitalRadius*Math.sin(a.userData.angle); a.rotation.y += 0.4*dt; });
+      controls.update(); renderer.render(scene,camera);
+    }
+  </script>
+</body>
+</html>
