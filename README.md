@@ -1,7 +1,7 @@
 
-- I'm currently interested in... Coding
-- 🌱 I’m currently learning ...Python
-- 💞️ I’m looking to collaborate on ... 
+- I'm currently interested in... Building
+-  I’m currently learning ...How to start a company.
+-  I’m looking to collaborate on ...
 - 📫 How to reach me ..fahaankuka2009@gmail.com
 
 <!---
