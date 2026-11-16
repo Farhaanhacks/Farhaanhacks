@@ -1,0 +1,661 @@
+[
+ {
+  "slug": "basic-computer-course",
+  "title": "WorkReady Tech: Basic Computer Skills Course",
+  "category": "digital",
+  "image": "computer-skills",
+  "og": "og-basic-computer",
+  "intro": [
+   "Embark on a learning adventure with our WorkReady Tech: Basic Computer Skills course. It's perfect for anyone wanting to get comfortable with computers and popular software programs like Microsoft Word & Excel.",
+   "Whether you're just starting out or looking to refresh your skills, this course will give you the knowledge and abilities to do well in the digital world."
+  ],
+  "label": "Course Summary",
+  "kind": "pairs",
+  "items": [
+   {
+    "h": "Getting Comfortable with Computers",
+    "p": [
+     "Learn to move around in the digital world with confidence using our easy-to-follow lessons."
+    ]
+   },
+   {
+    "h": "Computer Operation Essentials",
+    "p": [
+     "Discover how to navigate computers, search for files and folders, and perform essential tasks to keep things organised."
+    ]
+   },
+   {
+    "h": "Organising Files on Your Computer",
+    "p": [
+     "Keep things tidy by creating folders for easy storage and retrieval of your documents"
+    ]
+   },
+   {
+    "h": "Mastering Keyboard and Mouse Skills",
+    "p": [
+     "Get the hang of using the keyboard and mouse, so you can navigate digital screens smoothly and accurately."
+    ]
+   },
+   {
+    "h": "Learn Microsoft Word basics",
+    "p": [
+     "Creating, saving, and formatting documents. Learn font, paragraph, and line spacing, along with lists, tables, and images. Basic formatting includes headers, footers, templates, and paragraph styles. Ensure accuracy with spelling/grammar checks, protect documents with passwords, and save in various formats, including PDF"
+    ]
+   },
+   {
+    "h": "Impressive Presentations with PowerPoint",
+    "p": [
+     "Creating, saving, and formatting presentations with slide layouts, themes, and transitions. Learn to create and format slides, including adding text, images, and shapes, and using slide masters for consistency. Enhance presentations with animations, transitions, and media, including embedding YouTube videos. Unleash your creativity and wow your audience with engaging presentations using Microsoft PowerPoint."
+    ]
+   },
+   {
+    "h": "Introduction to Excel",
+    "p": [
+     "Creating, saving, and formatting workbooks, with basics of tables, formulas, and functions. Learn data entry, text/number formatting, and spreadsheet design. Explore basic formulas like SUM and AVERAGE, and create simple charts/graphs including pie, bar, and line charts with formatting options."
+    ]
+   },
+   {
+    "h": "Efficient Email Communication",
+    "p": [
+     "Make the most of email for clear and organised communication, making your digital correspondence a breeze."
+    ]
+   },
+   {
+    "h": "Smart Internet Use",
+    "p": [
+     "Find your way around the internet and use search engines for quick and effective research."
+    ]
+   },
+   {
+    "h": "Staying Safe and Troubleshooting",
+    "p": [
+     "Get savvy about computer security and learn how to solve common issues, keeping your digital space safe."
+    ]
+   },
+   {
+    "h": "Boosting Productivity with Computer Tools",
+    "p": [
+     "Discover useful tools like calculators, notepads, and screenshot features to work smarter and faster."
+    ]
+   }
+  ],
+  "outro": [
+   "By completing the WorkReady Tech: Basic Computer Skills course, you'll establish a strong foundation in computer proficiency that will benefit you in both personal and professional endeavors. Develop the confidence and competence to navigate the digital landscape, opening doors to new opportunities and empowering your success.",
+   "Enroll in the basic computer skills course and embark on a transformative journey toward computer mastery. Embrace the power of technology, enhance your employability, and become a proficient digital citizen in the modern world."
+  ],
+  "cta": "Enrol in Our 3-Day Course Now!",
+  "description": "Enhance your digital proficiency and gain confidence in using computers effectively with our comprehensive basic computer skills course. Join our basic computer course today!",
+  "name": "WorkReady Tech",
+  "imageAlt": "Adult learners of all ages learning computer skills in class"
+ },
+ {
+  "slug": "online-business-essentials-course",
+  "title": "Online Business Essentials Courses",
+  "category": "digital",
+  "image": "course-online-business",
+  "og": "og-online-business",
+  "intro": [
+   "Unlock the key to online business success and grow your business online with our Online Business Essentials course.",
+   "Designed to equip entrepreneurs and aspiring business owners with essential knowledge and skills, this qualification provides a comprehensive understanding of core elements required to thrive in the digital landscape. From establishing a strong online presence to delivering exceptional customer service, this course will empower you to navigate the complexities of the online business world with confidence and finesse."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Discover the art of creating a compelling digital presence by building simple yet impactful web pages, captivating your audience and boosting online visibility.",
+   "Master essential SEO techniques that will optimize your web content and drive organic traffic to your business, ensuring maximum online exposure.",
+   "Engage with your audience effectively through various social media platforms, learning to create a tailored social media strategy that aligns with your business goals.",
+   "Harness the power of AI tools to generate quality content for your business, saving valuable time and resources while maintaining a consistent brand voice.",
+   "Learn the art of providing excellent online customer service, utilising various tools and platforms to engage with your customers and resolve issues and complaints efficiently.",
+   "Develop a solid understanding of managing personally identifiable information, ensuring the protection of your business and customers' data.",
+   "Implement workplace information security measures to safeguard sensitive data and adhere to data privacy regulations.",
+   "Gain the knowledge and skills needed to navigate the dynamic digital landscape with confidence, positioning your business for success."
+  ],
+  "outro": [
+   "Enrol in the Online Business Essentials course and unlock the essential tools and strategies required to thrive in the online business world.",
+   "Empower yourself with the knowledge and skills to establish a strong digital presence, engage with your audience effectively, and deliver exceptional customer experiences. Elevate your business to new heights of success in the digital era."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Online Business Essentials",
+  "imageAlt": "A small business owner packing orders next to a laptop"
+ },
+ {
+  "slug": "business-fundamentals-course",
+  "title": "Business Fundamentals Course",
+  "category": "business",
+  "image": "cat-business",
+  "og": "og-business-courses",
+  "intro": [
+   "Unleash your entrepreneurial spirit and unlock the secrets to business success with our Business Fundamentals course.",
+   "Designed for aspiring business leaders and entrepreneurs, this qualification offers a comprehensive curriculum that covers key aspects of business development and management. From crafting a solid business plan to mastering marketing techniques, this course equips you with the essential knowledge and skills to thrive in the dynamic world of business."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Learn how to develop a comprehensive business plan that outlines your vision, objectives, and strategies for success.",
+   "Master marketing and branding techniques to effectively promote your products or services and establish a strong market presence.",
+   "Acquire budgeting and financial management skills to effectively manage your business finances and ensure long-term sustainability.",
+   "Develop effective communication and negotiation skills to build strong relationships with stakeholders and drive business growth.",
+   "Gain leadership and team management techniques to inspire and motivate your team, fostering a collaborative and productive work environment.",
+   "Explore entrepreneurship and innovation principles to identify new opportunities and drive business growth in a rapidly changing marketplace."
+  ],
+  "outro": [
+   "Enroll in the Business Fundamentals course and embark on a transformative journey toward business excellence. Gain the knowledge, skills, and confidence to navigate the challenges of entrepreneurship, seize opportunities, and achieve your business goals.",
+   "Empower yourself with the tools and strategies to drive success and make a lasting impact in the business world."
+  ],
+  "cta": null,
+  "description": "Designed for individuals entering the job market, this course equips you with the skills & knowledge needed to participate effectively in a learning environment",
+  "name": "Business Fundamentals",
+  "imageAlt": "a woman sitting at a table using a laptop"
+ },
+ {
+  "slug": "customer-service-excellence-course",
+  "title": "Customer Service Excellence Course",
+  "category": "business",
+  "image": "course-customer-service",
+  "og": "",
+  "intro": [
+   "Unlock the secrets to providing exceptional customer service with our Service Excellence: Mastering Customer Satisfaction course.",
+   "Designed for individuals who aim to excel in customer service roles, this qualification equips you with the essential skills and techniques to deliver outstanding customer experiences. From effective communication to conflict resolution, this course empowers you to build strong relationships with customers and leave a lasting positive impression."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Master effective communication techniques for dealing with customers, ensuring clear and empathetic interactions that meet their needs and exceed their expectations.",
+   "Learn how to handle customer complaints and resolve conflicts with professionalism and efficiency, turning negative experiences into positive outcomes.",
+   "Understand the importance of maintaining a positive attitude and building strong relationships with customers, fostering loyalty and repeat business.",
+   "Develop techniques for managing your time and workload effectively, enabling you to provide prompt and efficient service to customers.",
+   "Discover how to utilize customer feedback as a valuable tool for improving your service and enhancing customer satisfaction."
+  ],
+  "outro": [
+   "Enroll in the Service Excellence: Mastering Customer Satisfaction course and elevate your customer service skills to new heights. Gain the knowledge, techniques, and mindset needed to deliver exceptional customer experiences that leave a lasting impact.",
+   "Empower yourself to build strong customer relationships, resolve conflicts, and exceed customer expectations. Transform your approach to customer service and become a true service excellence champion."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Customer Service Excellence",
+  "imageAlt": "2 women sitting at table"
+ },
+ {
+  "slug": "business-to-business-b2b-sales-training-course",
+  "title": "Business to Business (B2B) Sales Training Course",
+  "category": "business",
+  "image": "course-b2b",
+  "og": "",
+  "intro": [
+   "Unlock the potential of your retail sales staff with our comprehensive B2B Sales Training course designed specifically for entry-level frontline retail sales staff. This qualification equips sales professionals with the knowledge and skills needed to excel in the B2B (business-to-business) sales environment. Through interactive training modules, practical exercises, and real-world case studies, participants will develop the expertise to effectively engage with B2B customers, understand their unique needs, and close successful sales deals.",
+   "Whether you are new to the world of B2B sales or looking to enhance your existing skills, this course will empower you to drive business growth and build long-lasting customer relationships."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Gain a solid understanding of the fundamentals of B2B sales and its significance in the retail industry.",
+   "Enhance communication and interpersonal skills to effectively engage with B2B customers.",
+   "How B2B sales is different from B2C (business-to-consumer) sales.",
+   "Establish trust and credibility in B2B relationships to cultivate long-term partnerships.",
+   "Acquire the ability to conduct needs analysis and identify customer pain points and requirements.",
+   "Learn effective solution-selling techniques to position products or services as valuable solutions.",
+   "Develop negotiation skills to achieve mutually beneficial outcomes in B2B sales.",
+   "Learn strategies to overcome objections and handle customer concerns with professionalism.",
+   "Acquire the skills to close sales deals and secure long-term contracts or partnerships.",
+   "Implement effective account management strategies to nurture and grow customer accounts.",
+   "Provide proactive customer service to ensure satisfaction and foster repeat business.",
+   "Identify opportunities for upselling and cross-selling to maximize revenue generation.",
+   "Understand key sales metrics and leverage data to measure performance.",
+   "Set personal goals for continuous professional growth in the field of B2B sales."
+  ],
+  "outro": [
+   "By completing the B2B Sales Training for Entry-Level Frontline Retail Sales Staff course, participants will gain the skills and knowledge needed to excel in the B2B sales environment. Empower your retail sales staff to drive business growth, build strong customer relationships, and achieve sales targets in the dynamic B2B marketplace."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Business to Business (B2B) Skills Training",
+  "imageAlt": "A business team meeting around a boardroom table"
+ },
+ {
+  "slug": "project-management-course",
+  "title": "Project Management",
+  "category": "project",
+  "image": "cat-project",
+  "og": "og-project-management",
+  "intro": [
+   "Become a proficient project manager with our Project Prodigy: Mastering Project Management course.",
+   "Designed for individuals seeking to excel in project management, this qualification provides a comprehensive understanding of essential principles, techniques, and skills required to lead successful projects. From project planning to team management, this course equips you with the knowledge and capabilities to effectively navigate the complexities of project execution and achieve optimal results."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Learn how to develop and manage comprehensive project plans, ensuring clarity, structure, and alignment of project objectives.",
+   "Master the art of effective project scheduling and resource allocation techniques, optimising project timelines and resource utilization.",
+   "Gain the skills to identify, assess, and manage project risks, minimising potential disruptions and maximising project success.",
+   "Develop stakeholder management and communication skills, ensuring effective collaboration and alignment with project stakeholders.",
+   "Acquire budgeting and cost control techniques to effectively manage project finances and ensure project profitability.",
+   "Explore quality management principles and techniques, fostering a culture of excellence and delivering high-quality project outcomes.",
+   "Develop leadership and team management skills to effectively lead and inspire project teams, fostering a collaborative and motivated work environment."
+  ],
+  "outro": [
+   "Enroll in the Project Management course and embark on a transformative journey to becoming a skilled project manager. Gain the confidence and expertise to successfully plan, execute, and deliver projects with excellence.",
+   "Empower yourself with the essential knowledge and skills to lead teams, manage risks, and achieve project success."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Project Management",
+  "imageAlt": "man in black crew neck t-shirt sitting on brown wooden chair"
+ },
+ {
+  "slug": "leadership-and-management-course",
+  "title": "Leadership and Management Course",
+  "category": "leadership",
+  "image": "cat-leadership",
+  "og": "og-leadership",
+  "intro": [
+   "Unleash your leadership potential and master the art of effective management with our Leadership Prodigy: Leadership and Management course.",
+   "Designed for aspiring leaders and managers, this qualification offers a comprehensive curriculum that covers key aspects of leadership and management. From identifying your leadership style to implementing strategic plans, this course equips you with the essential knowledge and skills to excel in leadership roles."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Discover how to identify and leverage your own leadership style, embracing your unique strengths and maximising your leadership potential.",
+   "Learn how to build and motivate high-performing teams, fostering collaboration, trust, and a shared sense of purpose.",
+   "Develop effective communication skills to convey your vision, goals, and expectations clearly to team members and stakeholders.",
+   "Acquire project management skills to effectively allocate resources, manage timelines, and ensure successful project delivery.",
+   "Navigate organizational dynamics and implement change with confidence, fostering a culture of continuous improvement and innovation.",
+   "Understand the importance of building and maintaining a positive organizational culture, cultivating an environment that attracts and retains top talent.",
+   "Master conflict management techniques and the art of conducting difficult conversations, promoting healthy resolutions and maintaining positive relationships.",
+   "Develop and implement strategic plans that align with organizational objectives, driving sustainable growth and success."
+  ],
+  "outro": [
+   "Enroll in the Leadership and Management course and embark on a transformative journey toward becoming an exceptional leader. Gain the knowledge, skills, and confidence to lead with impact, inspire your team, and drive organizational success.",
+   "Empower yourself with the tools and strategies to navigate complex challenges, implement change, and create a thriving work environment."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Leadership and Management",
+  "imageAlt": "three men sitting while using laptops and watching man beside whiteboard"
+ },
+ {
+  "slug": "peak-performance-leading-with-excellence-course",
+  "title": "Peak Performance : Leading with Excellence",
+  "category": "leadership",
+  "image": "course-peak-performance",
+  "og": "",
+  "intro": [
+   "Embark on a transformative journey of leadership mastery with our People Leader and Manager course.",
+   "This comprehensive program is designed to equip students with the essential skills, knowledge, and strategies needed to excel as leaders in today's dynamic business landscape. Through a combination of practical insights, real-world case studies, and interactive exercises, participants will gain a deep understanding of effective leadership principles and learn how to apply them in their professional lives. Get ready to unlock your leadership potential and take your career to new heights."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Develop a compelling leadership vision and learn how to effectively communicate it to inspire and motivate teams.",
+   "Acquire essential communication and interpersonal skills to build strong relationships, resolve conflicts, and foster a positive work environment.",
+   "Master the art of strategic decision-making, including analyzing complex situations, weighing risks, and identifying optimal solutions.",
+   "Learn proven techniques for effective team management, including delegation, empowerment, and performance evaluation.",
+   "Understand the dynamics of change and develop strategies to lead teams through transitions and foster a culture of adaptability.",
+   "Gain insights into organizational dynamics, ethics, and corporate social responsibility to become a responsible and respected leader.",
+   "Cultivate your emotional intelligence to better understand and manage yourself and others, enhancing your leadership effectiveness.",
+   "Learn effective coaching and mentoring techniques to inspire and develop the potential of your team members.",
+   "Acquire the skills to navigate diverse and multicultural environments, promoting inclusivity and leveraging diversity as a strength.",
+   "Develop a personal leadership development plan to continue your growth beyond the course and sustain long-term success."
+  ],
+  "outro": [
+   "Join this Leadership Accelerator course and embark on a transformative journey towards becoming an influential and impactful leader in today's ever-changing business world."
+  ],
+  "cta": null,
+  "description": "Embark on a transformative journey with our comprehensive people leader and manager course. Designed to equip you with essential leadership skills and effective leadership principles, this program ...",
+  "name": "Peak Performance: Leading with Excellence",
+  "imageAlt": "tan dog sitting beside man and woman"
+ },
+ {
+  "slug": "impact-advanced-leadership-course",
+  "title": "Impact: Advanced Leadership Course",
+  "category": "leadership",
+  "image": "course-impact",
+  "og": "",
+  "intro": [
+   "Ignite your leadership potential and make a lasting impact with our Advanced Leadership course.",
+   "Designed for experienced leaders and executives seeking to elevate their leadership skills to new heights, this advanced program empowers participants with the knowledge, insights, and strategies needed to navigate complex challenges, drive strategic excellence, and shape the future of their organizations."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Hone your strategic thinking and decision-making abilities to effectively navigate the complexities of the business landscape and drive organizational success.",
+   "Learn advanced techniques for leading high-performing teams and fostering a culture of innovation, collaboration, and continuous improvement.",
+   "Gain a deep understanding of strategic alignment, organizational design, and change management to drive impactful transformations.",
+   "Develop and communicate a compelling vision that inspires and motivates your teams, rallying them towards shared goals and objectives.",
+   "Master the art of stakeholder management, influencing key decision-makers, and building strategic partnerships to drive organizational growth.",
+   "Acquire advanced leadership communication skills to effectively convey complex ideas, influence diverse audiences, and drive organizational alignment.",
+   "Explore cutting-edge concepts and frameworks for strategic leadership, leveraging data, and technology to gain a competitive edge.",
+   "Cultivate your leadership presence and enhance your personal brand to become a recognized and respected leader in your industry.",
+   "Develop strategies for managing and leading through adversity, uncertainty, and ambiguity, driving resilience and organizational agility.",
+   "Foster a culture of ethical leadership, social responsibility, and sustainable business practices to make a positive impact on society."
+  ],
+  "outro": [
+   "Join the Mastery Catalyst: Strategic Leadership Accelerator and embark on a transformative journey towards becoming a visionary and influential leader who drives strategic excellence, shapes the future, and leaves a lasting impact on your organization and beyond."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Impact: Advanced Leadership",
+  "imageAlt": "man standing in front of people sitting beside table with laptop computers"
+ },
+ {
+  "slug": "leadership-launchpad-course",
+  "title": "Leadership Launchpad Course",
+  "category": "leadership",
+  "image": "course-launchpad",
+  "og": "",
+  "intro": [
+   "Embark on a transformative leadership journey with our Leadership Launchpad course.",
+   "Whether you're taking your first steps into leadership or transitioning to a new leadership role, this program serves as the perfect launchpad to propel your career forward. Gain the essential skills, knowledge, and confidence to navigate the complexities of leadership, inspire your team, and achieve success."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Lay a strong foundation in leadership basics and acquire the fundamental principles necessary to excel as a leader.",
+   "Navigate the unique challenges of transitioning into a leadership role with confidence and clarity.",
+   "Serve as a guiding light for your team, providing direction, support, and inspiration to drive their growth and performance.",
+   "Rise to new heights as a leader by developing effective communication, interpersonal, and relationship-building skills.",
+   "Explore the qualities of emergent leadership and discover how to lead with agility, adaptability, and resilience.",
+   "Pave your pioneering path in leadership, setting a clear vision, defining goals, and inspiring others to follow.",
+   "Lift off your leadership journey with a comprehensive understanding of the foundational principles and best practices for new leaders.",
+   "Embrace the responsibilities of leadership from ground zero and develop the skills needed to lead with confidence and impact.",
+   "Become an alpha leader by mastering the core concepts and skills of leadership in our comprehensive Leadership 101 module.",
+   "Witness the genesis of leadership within yourself and unlock your true potential to become an influential and impactful leader.",
+   "Experience the dawn of leadership as you step into your first-time leadership role with knowledge, skills, and readiness.",
+   "Ascend to new heights with our New Leader Program, equipping you with the tools to succeed in your leadership journey.",
+   "Blaze a trail as a first-time leader, forging your own path and setting an example for others to follow.",
+   "Jumpstart your leadership career with the knowledge and skills needed to make an immediate impact and thrive in your role.",
+   "Explore new horizons and establish a solid foundation in leadership through our comprehensive Leadership Foundations module.",
+   "Ignite the leadership spark within you and unleash your potential to inspire and lead others to success.",
+   "Rise as a prominent leader in our Rising Leader: The New Leader Program, mastering the essential skills for leadership excellence.",
+   "Become a pioneer in your field by taking the first step in your leadership journey and embracing the challenges and opportunities that lie ahead."
+  ],
+  "outro": [
+   "Enroll in the Leadership Launchpad course and accelerate your leadership journey, taking your first step forward towards becoming a successful, influential, and inspiring leader."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Leadership Launchpad",
+  "imageAlt": "woman in black coat sitting on chair"
+ },
+ {
+  "slug": "transcend-leadership-evolution-course",
+  "title": "Transcend: Leadership Evolution Course",
+  "category": "leadership",
+  "image": "course-transcend",
+  "og": "",
+  "intro": [
+   "Experience a transformative journey of leadership evolution with our Transcend: Leadership Evolution course.",
+   "Designed for managers and supervisors seeking to elevate their leadership skills to extraordinary levels, this program empowers participants to transcend conventional boundaries, unleash their full potential, and become true leaders of influence and impact."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Achieve mastery in motion and excel in the art of supervisory excellence, honing your skills to effectively lead and inspire your team.",
+   "Embrace the role of a leadership vanguard, mastering the principles and practices of managerial mastery to drive organizational success.",
+   "Reach the peak of your performance as a supervisor, harnessing your strengths and adopting strategies for mastering the art of supervision.",
+   "Elevate your leadership acumen with our Managerial Mastery Course, gaining the essential knowledge and competencies for managerial success.",
+   "Cultivate the manager's mettle within you, embodying leadership fortitude and resilience in the face of challenges and uncertainty.",
+   "Become a supervisory sovereign, mastering managerial excellence and leading with confidence, influence, and impact.",
+   "Reach the pinnacle of your supervisory journey by enrolling in our Mastering Supervision course, where you will achieve exceptional leadership.",
+   "Unleash your managerial magnitude by leveraging leadership leverage, harnessing your skills to drive organizational success.",
+   "Attain the apex of managerial leadership through our Mastering Managerial Leadership course, developing the competencies for success.",
+   "Create a leadership legacy as you master the art of managerial mastery, leaving a lasting impact on your team and organization.",
+   "Embark on a leadership odyssey, mastering the intricacies of supervision and evolving into an exceptional leader.",
+   "Embrace the manager's manifesto, embodying mastery in leadership and inspiring your team to reach new heights of success.",
+   "Ascend to the summit of supervisory excellence through our Supervisory Summit, where you will acquire the skills needed for mastery.",
+   "Join the ranks of the leadership elite by enrolling in our Mastering Supervision course, unlocking your full leadership potential."
+  ],
+  "outro": [
+   "Enroll in the Leadership Transcendence course and embark on a transformative journey towards evolving into an extraordinary leader who inspires, influences, and achieves remarkable results."
+  ],
+  "cta": null,
+  "description": "Build the skills you need to succeed with our computer and business programs. Our experienced instructors provide personalized feedback and support, while our in-class experience lets you connect with other students. Choose from a variety of programs, including Basic Computer Skills, Project Management, Leadership and Management, Business, Operational Leaders, Store Managers, Frontline Team Leaders and Customer Service. We also offer customized corporate programs.",
+  "name": "Transcend: Leadership Evolution",
+  "imageAlt": "a man and a woman in a warehouse"
+ },
+ {
+  "slug": "workforce-readiness-and-basic-skills",
+  "title": "Workforce Readiness and Basic Skills Course",
+  "category": "foundation",
+  "image": "course-workforce-readiness",
+  "og": "",
+  "intro": [
+   "Unlock the power of effective workplace communication with our Workplace Communication Basics course. Designed for individuals seeking to enhance their communication abilities in a professional setting, this qualification provides comprehensive training in workplace reading, writing, and spoken exchanges.",
+   "Learn how to read and respond to workplace signs and symbols, write concise workplace texts, engage in effective spoken exchanges, and interpret and respond to essential workplace information. By mastering these communication skills, you'll boost your confidence and professionalism in any workplace environment."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Develop the ability to read and respond to short and simple workplace signs and symbols.",
+   "Enhance your workplace writing skills by creating short and concise formatted texts.",
+   "Engage in effective spoken exchanges in the workplace, ensuring clear communication.",
+   "Learn to interpret and respond to short and simple workplace information."
+  ],
+  "outro": [],
+  "cta": null,
+  "description": "Learn how to write concise workplace texts, engage in effective spoken exchanges, & interpret and respond to essential workplace information.",
+  "name": "Workforce Readiness and Basic Skills",
+  "imageAlt": "A group of young adults working together around a table"
+ },
+ {
+  "slug": "digital-literacy-for-the-workplace",
+  "title": "Digital Literacy and Data handling for the Workplace Course",
+  "category": "foundation",
+  "image": "course-digital-literacy",
+  "og": "",
+  "intro": [
+   "Are you ready to enhance your digital skills and excel in the modern workforce?",
+   "Our Digital Literacy for the Workplace course is designed to equip individuals like you with the fundamental knowledge and abilities required to thrive in a digital-oriented work environment."
+  ],
+  "label": "Course Content",
+  "kind": "units",
+  "items": [
+   {
+    "n": "1",
+    "h": "Use digital technology for short and basic workplace tasks",
+    "p": [
+     "Gain proficiency in leveraging digital technology to accomplish short and essential workplace tasks.",
+     "Learn to identify task requirements, select the appropriate digital tools, and follow instructions to successfully complete your assignments."
+    ]
+   },
+   {
+    "n": "2",
+    "h": "Write short and simple workplace information",
+    "p": [
+     "Develop effective written communication skills for workplace contexts.",
+     "Master the art of drafting concise and straightforward workplace information, ensuring clarity, accuracy, and relevance.",
+     "Learn to structure your content, employ suitable vocabulary, and adhere to essential writing conventions."
+    ]
+   },
+   {
+    "n": "3",
+    "h": "Use simple data for work",
+    "p": [
+     "Explore the interpretation and utilization of simple graphs, charts, and tables commonly encountered in professional settings.",
+     "Acquire the ability to compare data, perform concrete workplace tasks, and effectively communicate data-related information."
+    ]
+   }
+  ],
+  "outro": [
+   "By completing the Digital Literacy for the Workplace qualification, you will develop a strong foundation in digital technology, written communication, data handling, and oral exchanges. These essential skills will empower you to navigate the digital landscape with confidence, perform tasks efficiently, and communicate effectively in the modern workplace.",
+   "Join us on this transformative learning journey and unlock your full potential in the digital realm."
+  ],
+  "cta": null,
+  "description": "In today's technology-driven workplace, this course empowers you to navigate digital platforms and perform essential digital tasks confidently.",
+  "name": "Digital Literacy for the Workplace",
+  "imageAlt": "man operating laptop on top of table"
+ },
+ {
+  "slug": "problem-solving-and-career-development",
+  "title": "Problem - Solving and Career Development Course",
+  "category": "foundation",
+  "image": "cat-foundation",
+  "og": "",
+  "intro": [
+   "This basic course is designed for individuals who are looking to enter the workforce and enhance their related to problem-solving and career planning skills. Through this course, you will develop essential skills to tackle workplace problems and plan for your career advancement."
+  ],
+  "label": "Course Content",
+  "kind": "units",
+  "items": [
+   {
+    "n": "1",
+    "h": "Identify strategies to respond to short and simple workplace problems",
+    "p": [
+     "Learn to identify and select workplace problems, propose effective problem-solving strategies, and review and refine your problem-solving approaches.",
+     "Gain the skills to address common challenges that arise in the workplace."
+    ]
+   },
+   {
+    "n": "2",
+    "h": "Use short and simple strategies for career planning",
+    "p": [
+     "Plan for your career goals by identifying learning requirements, assessing your skills and potential skill gaps, and addressing barriers that may hinder your progress.",
+     "Develop an individual learning plan and receive valuable feedback from experts or mentors to refine your career strategies."
+    ]
+   },
+   {
+    "n": "3",
+    "h": "Use short and simple strategies for work-related learning",
+    "p": [
+     "Prepare yourself for effective learning experiences by identifying your learning needs, preferred approaches to learning, and potential barriers.",
+     "Set short-term learning goals, employ various learning strategies, and utilize learning support resources."
+    ]
+   }
+  ],
+  "outro": [
+   "By successfully completing this qualification, you will acquire problem-solving skills, effective career planning strategies, and the ability to engage in work-related learning. These valuable skills will equip you to navigate the challenges of the workforce and enhance your career prospects.",
+   "Join us on this journey of personal and professional development as you gain the confidence and expertise needed to succeed in the dynamic world of work."
+  ],
+  "cta": null,
+  "description": "This course empowers you to identify strategies to respond to short & simple workplace problems, plan your career effectively, & engage in work-related learning",
+  "name": "Problem-Solving and Career Development",
+  "imageAlt": "A trainer leading a small group discussion"
+ },
+ {
+  "slug": "workplace-communication-basics-course",
+  "title": "Workplace Communication Basics Course",
+  "category": "foundation",
+  "image": "course-workplace-communication",
+  "og": "",
+  "intro": [
+   "This qualification is designed to provide individuals with essential skills and knowledge to excel in the workforce. Whether you are new to the job market or seeking to enhance your employability, this course equips you with the fundamental skills needed for workplace success."
+  ],
+  "label": "Course Content",
+  "kind": "units",
+  "items": [
+   {
+    "n": "1",
+    "h": "Prepare to engage in learning",
+    "p": [
+     "In this unit, you will identify your own resource and planning needs for vocational training or workplace learning, with the assistance of our expert trainers. We will help you set immediate learning goals based on your specific needs and preferred learning activities. Additionally, we will explore potential barriers to participating in learning and develop strategies to overcome them."
+    ]
+   },
+   {
+    "n": "2",
+    "h": "Complete personal details on extremely simple and short workplace forms",
+    "p": [
+     "Master the art of completing extremely simple and short workplace forms with ease. You will learn to understand the explicit purpose of each form and recognize the basic text features associated with them. With structured support available, you will confidently fill in the required fields with highly familiar personal details. We will guide you in checking your completed form for accuracy, spelling, and formatting, ensuring a polished final submission."
+    ]
+   },
+   {
+    "n": "3",
+    "h": "Participate in highly familiar spoken exchanges",
+    "p": [
+     "Effective communication is crucial in any workplace setting. In this unit, we will prepare you to engage in highly familiar spoken exchanges. You will learn to identify the type of spoken exchange, understand the audience and purpose, and acquire formulaic expressions and relevant details for effective communication. Through interactive exercises, you will actively engage in spoken exchanges, employing oral communication strategies and basic non-verbal communication methods. Our expert trainers will provide valuable feedback to help you continuously improve your spoken communication skills."
+    ]
+   }
+  ],
+  "outro": [
+   "Join us today to enhance your workforce readiness and develop essential basic skills. Our supportive learning environment and experienced trainers are dedicated to your success. Upon completion of this course, you will possess the confidence and competence to excel in the workplace."
+  ],
+  "cta": null,
+  "description": "This comprehensive course is designed for individuals entering the job market, providing essential skills and knowledge to thrive in a learning environment and enhance your employability as a job seeker.",
+  "name": "Workplace Communication Basics",
+  "imageAlt": "People around a table holding up colourful speech bubbles"
+ },
+ {
+  "slug": "foundation-numeracy-skills-for-the-workplace",
+  "title": "Foundation Numeracy Skills for the Workplace Course",
+  "category": "numeracy",
+  "image": "cat-numeracy",
+  "og": "",
+  "intro": [
+   "Are you looking to join the workforce or enhance your foundational numeracy skills?",
+   "Our comprehensive course is designed to provide you with the essential knowledge and abilities required to commence a career. Whether you're starting fresh or aiming to upskill, our course is tailored to meet your needs."
+  ],
+  "label": "Course Content",
+  "kind": "units",
+  "items": [
+   {
+    "n": "1",
+    "h": "Use whole numbers and halves for work",
+    "p": [
+     "Develop a solid foundation in numeracy by identifying simple everyday numbers and mastering basic arithmetic operations.",
+     "Learn to locate and recognise whole numbers and halves in various workplace contexts.",
+     "Communicate number information effectively through written and oral means."
+    ]
+   },
+   {
+    "n": "2",
+    "h": "Use basic and familiar metric measurements for work",
+    "p": [
+     "Immerse yourself in the world of metric measurements.",
+     "Discover the significance of basic and familiar units and their application in the workplace.",
+     "Acquire the skills to perform measurements using appropriate tools, compare measurements, and calculate with confidence.",
+     "Enhance your ability to communicate measurement information accurately."
+    ]
+   },
+   {
+    "n": "3",
+    "h": "Use familiar 2D shapes for work",
+    "p": [
+     "Uncover the importance of 2D shapes in the workplace.",
+     "Identify and describe familiar shapes found in written texts and oral conversations.",
+     "Explore shape-based mathematical processes, such as comparing and grouping shapes.",
+     "Sharpen your communication skills by effectively expressing shape information in written and oral formats."
+    ]
+   },
+   {
+    "n": "4",
+    "h": "Use simple and highly familiar spatial information for work",
+    "p": [
+     "Navigate the realm of spatial information and develop proficiency in spatial reasoning.",
+     "Learn to locate and recognise familiar items, places, symbols, and representations within workplace maps and diagrams.",
+     "Gain the ability to follow and provide oral instructions to find objects, effectively utilize workplace maps, and communicate spatial information clearly."
+    ]
+   }
+  ],
+  "outro": [
+   "Embark on this journey with us and unlock your full potential in the workplace. Our experienced instructors will guide you through engaging lessons, interactive exercises, and real-world scenarios, ensuring a practical and enriching learning experience.",
+   "Join our Foundation Numeracy Skills for the Workplace qualification and equip yourself with the essential numeracy skills required to succeed in your professional endeavours.",
+   "Start your journey towards a brighter future today."
+  ],
+  "cta": null,
+  "description": "Build a strong foundation in numeracy skills for the workplace with our Foundation Numeracy Skills for the Workplace course. ",
+  "name": "Foundation Numeracy Skills for the Workplace",
+  "imageAlt": "Hands measuring timber with a ruler and pencil"
+ },
+ {
+  "slug": "workplace-numeracy-essentials",
+  "title": "Workplace Numeracy Essentails Course",
+  "category": "numeracy",
+  "image": "course-workplace-numeracy",
+  "og": "",
+  "intro": [
+   "Build a strong foundation in numeracy skills for the workplace with our Workplace Numeracy Essentials course.",
+   "Designed to enhance your numerical abilities, this course provides practical training in using whole numbers, understanding time, working with 2D shapes, and recognising workplace signs and symbols. Develop essential numeracy skills that are vital for performing work-related tasks accurately and efficiently. Gain the confidence to apply basic mathematical concepts to solve problems in a professional setting."
+  ],
+  "label": "Course Summary",
+  "kind": "list",
+  "items": [
+   "Acquire foundational skills in using whole numbers up to 100 for work-related calculations.",
+   "Learn to use time and understand 2D shapes in a workplace context.",
+   "Recognise extremely short and simple workplace signs and symbols."
+  ],
+  "outro": [],
+  "cta": null,
+  "description": "Discover effective strategies designed to enhance your numerical abilities, including mastering whole numbers, understanding time, working with 2D shapes, and recognising workplace signs and symbols for improved numerical skills.",
+  "name": "Workplace Numeracy Essentials",
+  "imageAlt": "A warehouse worker holding a tablet"
+ }
+]

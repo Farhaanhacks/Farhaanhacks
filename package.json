@@ -1,0 +1,12 @@
+{
+  "name": "skillup-sa-website",
+  "private": true,
+  "description": "SkillUp SA website (static, no dependencies)",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "preview": "node src/build.mjs && python3 -m http.server 4321 -d dist"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
