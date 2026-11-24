@@ -292,6 +292,25 @@ page('/', layout({
   </div>
 </section>
 
+<section class="section section--navy on-dark" aria-labelledby="capability-title">
+  <div class="wrap cap">
+    <div class="cap-head">
+      <p class="eyebrow">${e(home.capability.eyebrow)}</p>
+      <h2 id="capability-title">${e(home.capability.title)}</h2>
+      <p>${e(home.capability.intro)}</p>
+      <div class="hero-actions" style="margin-top:28px">
+        <a class="btn btn--sky" href="#enquire">Get in Touch ${icon.arrow}</a>
+        <a class="btn btn--ghost-light" href="/our-courses">Our Courses</a>
+      </div>
+    </div>
+    <div>
+      <h3 class="cap-list-title">${e(home.capability.listTitle)}</h3>
+      <ul class="cap-list">${home.capability.list.map((x) => `<li>${e(x)}</li>`).join('')}</ul>
+      ${paras(home.capability.paras)}
+    </div>
+  </div>
+</section>
+
 <section class="section" aria-labelledby="corp-title">
   <div class="wrap">
     <div class="corporate-media">${img('corporate-programs', 'people meeting in room', { sizes: '100vw' })}</div>

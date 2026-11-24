@@ -64,6 +64,8 @@ export const CRM_ENQUIRE_URL = 'https://crm.skillupsa.com.au/enquire';
 - Opening hours are Monday - Friday 9:00 - 17:00 only (Saturday and Sunday removed), in the footer and on the Contact page.
 - The award banner (and the award line in the footer) links to the SA Training Awards ACE Provider of the Year page. The Government of SA logo opens the same page (change `GOV_SUPPORT_URL` in `src/site.mjs` to point it elsewhere). Both open in a new tab.
 - The header logo no longer touches the award banner.
+- Home: the About section now uses the client's "Building Workforce Capability for Regional South Australia" copy (replacing "Why Choose SkillUp SA"). The About Us page itself is unchanged.
+- Home: new "Capability Statement" band (navy, text only: heading and intro on the left, capabilities on the right), in the spot where "Boost your Computer Skills" used to be.
 
 **Structure and layout (copy unchanged)**
 - The two hero blocks on the home page ("Adult Community Education Programs" and "Acquire the Skills You Need to Succeed") are merged into one hero.

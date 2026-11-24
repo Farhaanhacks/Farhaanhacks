@@ -109,13 +109,35 @@ export const home = {
       'Our programs are shaped by real community needs, informed by our partnerships with local organisations, and delivered with care. We are proud to walk alongside our participants as they build confidence, strengthen their skills, and move towards meaningful pathways in life, learning, and work.',
     ],
   },
+  // Home "About" section (client copy, Nov 2026)
   why: {
-    title: 'Why Choose SkillUp SA',
+    title: 'Building Workforce Capability for Regional South Australia',
     paras: [
-      'We believe learning should be practical, enjoyable, and genuinely supportive. SkillUp SA designs and delivers training that empowers individuals and strengthens communities. From helping adults build confidence and foundation skills to supporting employers with tailored workforce solutions, we make every learning journey count.',
-      'We work closely with employers, and industry groups to ensure that our training is aligned with real workplace needs. Whether in aged care, civil construction, retail, or community services, we help organisations build confident teams equipped with the right technical and employability skills. Each session is led by passionate trainers who bring heart, humour, and hands-on experience into the training room. They create safe, engaging, and inclusive spaces where learners can thrive.',
-      'We are especially proud of our deep commitment to regional and remote areas across South Australia. In places where access to education is limited and extra support is needed, we go the extra mile to ensure learners feel seen, supported, and ready to succeed.',
-      'At SkillUp SA, you are never just a number. You are welcomed, encouraged, and equipped with the skills and confidence you need to move forward, whether into further study, meaningful work, or a fresh start.',
+      'SkillUp SA is a Whyalla based South Australian workforce development organisation committed to strengthening regional communities through foundation skills, workforce capability and employment pathways.',
+      'We partner with government, employers, Registered Training Organisations and community organisations to design and deliver practical workforce solutions that respond to regional skills shortages, emerging industries and local economic priorities. Our work focuses on preparing people for sustainable employment while helping employers develop capable, confident and job-ready workforces.',
+      "Rather than simply delivering training, SkillUp SA integrates foundation skills, vocational education and industry engagement to create meaningful pathways into employment. Through collaborative partnerships and innovative program design, we contribute to stronger regional economies and Australia's future workforce.",
+    ],
+  },
+  // Home "Capability Statement" band (client copy, Nov 2026)
+  capability: {
+    eyebrow: 'Capability Statement',
+    title: 'Developing People. Strengthening Workforces. Growing Communities.',
+    intro: 'SkillUp SA specialises in the design and delivery of contextualised workforce development programs that align education with real industry needs. We work across metropolitan and regional South Australia, supporting individuals, employers and communities through practical, industry-connected learning.',
+    listTitle: 'Our capability includes:',
+    list: [
+      'Workforce Development and Employment Pathway programs',
+      'Work Readiness and Employability Skills',
+      'Language, Literacy, Numeracy and Digital Capability (Foundation Skills)',
+      'Accredited and Non-Accredited Vocational Education',
+      'Leadership and Supervisory Development Programs',
+      'Instructional Design and Learning Resource Development',
+      'Industry Engagement and Employer Partnerships',
+      'Community Capacity Building and Regional Workforce Projects',
+      'Workforce Capability Consulting and Program Design',
+    ],
+    paras: [
+      'Our programs are contextualised to meet the needs of priority industries including energy, mining, civil construction, infrastructure, manufacturing, care and community services, hospitality, business services and local government.',
+      'SkillUp SA has particular expertise in supporting people who face barriers to workforce participation, including individuals with low foundation skills, culturally and linguistically diverse (CALD) communities, First Nations learners and those experiencing long-term unemployment. By embedding foundation skills within authentic vocational contexts, we help learners build the confidence, capability and resilience needed to succeed in further training, employment and lifelong learning.',
     ],
   },
   skilled: {
