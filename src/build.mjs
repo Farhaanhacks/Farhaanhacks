@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  courses, categories, acePrograms, contact, award, slogan, descriptions, CRM_ENQUIRE_URL, AWARD_URL, GOV_SUPPORT_URL,
+  courses, categories, acePrograms, contact, award, slogan, descriptions, CRM_ENQUIRE_URL, AWARD_URL, GOV_SUPPORT_URL, awardVideo,
   home, about, team, ourCourses, contactPage,
 } from './site.mjs';
 
@@ -267,6 +267,24 @@ page('/', layout({
     </div>
     <div class="programs-foot">
       <a class="text-link" href="/ace-programs">ACE Programs ${icon.arrow}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--stage on-dark" aria-labelledby="awards-title">
+  <div class="wrap stage">
+    <div class="stage-copy">
+      <p class="eyebrow">SA Training Awards 2026</p>
+      <h2 id="awards-title">Adult Community Education Provider of the Year</h2>
+      <p class="stage-statement">${e(award)}</p>
+      <a class="text-link" href="${AWARD_URL}" target="_blank" rel="noopener">View on the SA Skills Commission website ${icon.arrow}</a>
+    </div>
+    <div class="video" data-vimeo="${awardVideo.vimeoId}" data-title="${e(awardVideo.title)}">
+      <a class="video-poster" href="https://vimeo.com/${awardVideo.vimeoId}" target="_blank" rel="noopener" aria-label="Play video: ${e(awardVideo.title)} (${awardVideo.length})">
+        ${img(awardVideo.poster, awardVideo.posterAlt, { sizes: '(max-width: 1020px) 100vw, 60vw' })}
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+        <span class="video-cap">${e(awardVideo.title)} · ${awardVideo.length}</span>
+      </a>
     </div>
   </div>
 </section>

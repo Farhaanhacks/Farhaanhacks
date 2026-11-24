@@ -66,6 +66,7 @@ export const CRM_ENQUIRE_URL = 'https://crm.skillupsa.com.au/enquire';
 - The header logo no longer touches the award banner.
 - Home: the About section now uses the client's "Building Workforce Capability for Regional South Australia" copy (replacing "Why Choose SkillUp SA"). The About Us page itself is unchanged.
 - Home: new "Capability Statement" band (navy, text only: heading and intro on the left, capabilities on the right), in the spot where "Boost your Computer Skills" used to be.
+- Home: new SA Training Awards 2026 section after the ACE section. It has the award statement, a link to the SA Skills Commission page, and the "2026 SA Training Awards Highlights" video (SA Skills Commission, Vimeo). The video shows the awards photo first and plays in place when clicked, with Vimeo's own fullscreen button. Nothing loads from Vimeo until someone presses play.
 
 **Structure and layout (copy unchanged)**
 - The two hero blocks on the home page ("Adult Community Education Programs" and "Acquire the Skills You Need to Succeed") are merged into one hero.

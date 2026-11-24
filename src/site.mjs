@@ -32,6 +32,15 @@ export const contact = {
 export const AWARD_URL = 'https://skillscommission.sa.gov.au/2026-sata-winners/ace-provider-of-the-year';
 export const GOV_SUPPORT_URL = AWARD_URL; // the Government of SA logo opens the same page; swap in another link here if needed
 
+// SA Training Awards 2026 highlights video (SA Skills Commission, on Vimeo)
+export const awardVideo = {
+  vimeoId: '1248526977',
+  title: '2026 SA Training Awards Highlights',
+  length: '1:59',
+  poster: 'sa-training-awards-2026',
+  posterAlt: 'Winners on stage at the 2026 SA Training Awards',
+};
+
 export const award = 'Proud Winner of the 2026 SA Training Award for Adult Community Education Provider of the Year!';
 export const slogan = 'Be future-proof and future-ready';
 

@@ -57,6 +57,22 @@
   });
   desktop.addEventListener('change', function () { setNav(false); closeAll(); });
 
+  // Video: the photo shows first; clicking plays the Vimeo video in place (nothing loads from Vimeo until then)
+  document.querySelectorAll('.video[data-vimeo]').forEach(function (box) {
+    var poster = box.querySelector('.video-poster');
+    poster.addEventListener('click', function (e) {
+      e.preventDefault();
+      var f = document.createElement('iframe');
+      f.src = 'https://player.vimeo.com/video/' + box.dataset.vimeo + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
+      f.title = box.dataset.title || 'Video';
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.setAttribute('allowfullscreen', '');
+      box.classList.add('is-playing');
+      box.replaceChild(f, poster);
+      f.focus();
+    });
+  });
+
   function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
