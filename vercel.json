@@ -4,6 +4,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/contact-zUntuk", "destination": "/contact", "permanent": true }
+    { "source": "/contact-zUntuk", "destination": "/contact", "permanent": true },
+    { "source": "/ace-programs-whyalla", "destination": "/ace-programs", "permanent": true }
   ]
 }

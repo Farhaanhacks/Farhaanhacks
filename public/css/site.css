@@ -26,7 +26,7 @@
   --gutter: clamp(16px, 4vw, 40px);
   --section: clamp(64px, 9vw, 128px);
   --radius: 6px;
-  --header-h: 92px;
+  --header-h: 104px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -141,7 +141,7 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 .site-header.is-scrolled { border-color: var(--line); box-shadow: 0 6px 24px -18px rgba(1,12,128,.35); }
 .site-header .wrap { display: flex; align-items: center; gap: 28px; height: var(--header-h); }
 .brand { display: block; flex: none; }
-.brand img { height: 82px; width: auto; margin: -4px 0; }
+.brand img { height: 104px; width: auto; margin: -6px 0; }
 
 .nav { margin-left: auto; }
 .nav > ul { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
@@ -188,8 +188,8 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
   .header-phone { display: none; }
 }
 @media (max-width: 1020px) {
-  :root { --header-h: 72px; }
-  .brand img { height: 60px; }
+  :root { --header-h: 80px; }
+  .brand img { height: 76px; margin: -4px 0; }
   .menu-toggle { display: inline-flex; }
   .header-cta { display: none; }
   .nav {
@@ -222,7 +222,7 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 
 /* ---------------------------------------------------------------- Hero (home) */
 .hero { position: relative; padding: clamp(40px, 6vw, 88px) 0 clamp(56px, 7vw, 104px); overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 /* Hero headline in Libre Franklin */
 .hero h1 {
   font-family: var(--hero); font-weight: 800; font-variation-settings: normal;
@@ -239,8 +239,8 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 .hero-ace p { margin: 0 0 6px; font-family: var(--serif); font-size: 1.3rem; line-height: 1.25; color: var(--navy); font-weight: 520; }
 
 .hero-media { position: relative; }
-.hero-media .frame { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 4.4; background: var(--paper); }
-.hero-media .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero-media .frame { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 2; background: var(--paper); }
+.hero-media .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .hero-media .arc { width: 128%; left: -34%; top: -18%; aspect-ratio: 1; color: var(--sky); z-index: -1; }
 .hero-media .block { position: absolute; right: -18px; bottom: -18px; width: 46%; height: 38%; background: var(--navy); border-radius: var(--radius); z-index: -1; }
 
@@ -258,6 +258,7 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 .mission { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); }
 .mission-aside { position: sticky; top: calc(var(--header-h) + 32px); align-self: start; }
 .mission-aside h2 { margin-bottom: 28px; }
+.gov-logo { width: 150px; height: auto; margin-top: 36px; mix-blend-mode: multiply; }
 .pull {
   margin: 0; padding: 4px 0 4px 24px; border-left: 3px solid var(--blue);
   font-family: var(--serif); font-style: italic; font-weight: 420; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); line-height: 1.25; color: var(--brand);
@@ -280,7 +281,7 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 .program-body h3 { font-size: 1.45rem; margin-bottom: 10px; }
 .program-body p { font-size: 1rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 18px; }
 .program-body .text-link { margin-top: auto; align-self: flex-start; font-size: 0.98rem; }
-.programs-foot { display: flex; align-items: center; gap: 18px; justify-content: space-between; margin-top: 28px; flex-wrap: wrap; }
+.programs-foot { display: flex; align-items: center; gap: 18px; justify-content: flex-end; margin-top: 28px; flex-wrap: wrap; }
 .gov { display: inline-flex; align-items: center; gap: 14px; color: var(--ink-soft); font-size: 0.95rem; }
 .gov img { width: 70px; mix-blend-mode: multiply; }
 
@@ -331,11 +332,11 @@ h4 { font-size: 1.2rem; line-height: 1.3; }
 .corporate-body p:first-child { color: var(--ink); font-weight: 600; }
 
 /* Slogan */
-.slogan { position: relative; min-height: clamp(320px, 40vw, 520px); display: flex; align-items: flex-end; overflow: hidden; background: #4fa6e6; }
+.slogan { position: relative; min-height: clamp(190px, 20vw, 280px); display: flex; align-items: flex-end; overflow: hidden; background: #4fa6e6; }
 .slogan img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 82%; }
 .slogan::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(1,12,128,0) 30%, rgba(1,12,128,.35) 100%); }
-.slogan .wrap { position: relative; z-index: 1; padding-bottom: clamp(36px, 5vw, 72px); }
-.slogan p { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(2.4rem, 1.4rem + 5vw, 6rem); line-height: 1; letter-spacing: -0.03em; color: #fff; max-width: 14ch; text-wrap: balance; }
+.slogan .wrap { position: relative; z-index: 1; padding-top: clamp(28px, 3vw, 44px); padding-bottom: clamp(28px, 3vw, 44px); }
+.slogan p { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 1.2rem + 3.2vw, 4.2rem); line-height: 1.02; letter-spacing: -0.03em; color: #fff; max-width: 16ch; text-wrap: balance; }
 .slogan p em { font-style: italic; font-weight: 400; }
 
 /* ---------------------------------------------------------------- Enquire */

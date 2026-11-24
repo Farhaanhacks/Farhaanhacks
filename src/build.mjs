@@ -51,7 +51,7 @@ function header(path) {
   const cur = (p) => (path === p ? ' aria-current="page"' : '');
   const inCourses = path.startsWith('/our-courses') || courses.some((c) => path === `/${c.slug}`);
   const inAbout = path === '/about-us' || path === '/our-team';
-  const inAce = path === '/ace-programs-whyalla' || acePrograms.some((p) => path === `/${p.slug}`);
+  const inAce = path === '/ace-programs' || acePrograms.some((p) => path === `/${p.slug}`);
   return `
 <a class="skip" href="#main">Skip to content</a>
 <div class="award" role="note"><div class="wrap">${icon.medal}<span><strong>${e(award)}</strong></span></div></div>
@@ -65,10 +65,10 @@ function header(path) {
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-courses">Our Courses ${icon.chevron}</button>
           <div class="menu menu--mega" id="menu-courses">
             ${categories.map((c) => `<div><h3>${e(c.name)}</h3><ul>${c.courses.map((x) => `<li><a href="/${x.slug}"${cur('/' + x.slug)}>${e(x.name)}</a></li>`).join('')}</ul></div>`).join('')}
-            <div class="menu-foot"><a href="/our-courses">View all courses ${icon.arrow}</a><a href="/ace-programs-whyalla">ACE Programs Whyalla ${icon.arrow}</a></div>
+            <div class="menu-foot"><a href="/our-courses">View all courses ${icon.arrow}</a><a href="/ace-programs">ACE Programs ${icon.arrow}</a></div>
           </div>
         </li>
-        <li${inAce ? ' class="is-current"' : ''}><a href="/ace-programs-whyalla"${inAce ? ' aria-current="page"' : ''}>ACE Programs Whyalla</a></li>
+        <li${inAce ? ' class="is-current"' : ''}><a href="/ace-programs"${inAce ? ' aria-current="page"' : ''}>ACE Programs</a></li>
         <li class="has-menu${inAbout ? ' is-current' : ''}" data-open="false">
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-about">About Us ${icon.chevron}</button>
           <div class="menu" id="menu-about"><ul>
@@ -138,7 +138,7 @@ function footer() {
         <ul>${categories.map((c) => `<li><a href="/our-courses#${c.id}">${e(c.name)}</a></li>`).join('')}</ul>
       </div>
       <div>
-        <h2>ACE Programs Whyalla</h2>
+        <h2>ACE Programs</h2>
         <ul>${acePrograms.map((p) => `<li><a href="/${p.slug}">${e(p.name)}</a></li>`).join('')}</ul>
       </div>
       <div>
@@ -214,13 +214,6 @@ page('/', layout({
         <a class="btn" href="/our-courses">Our Courses ${icon.arrow}</a>
         <a class="btn btn--ghost" href="#enquire">Get in Touch</a>
       </div>
-      <div class="hero-ace">
-        <img src="/img/gov-sa-supported.jpg" alt="Supported by Government of South Australia" width="96" height="82">
-        <div>
-          <p>${e(home.aceTitle)}</p>
-          <a class="text-link" href="/ace-programs-whyalla">Learn More ${icon.arrow}</a>
-        </div>
-      </div>
     </div>
     <div class="hero-media">
       ${arc()}
@@ -230,13 +223,30 @@ page('/', layout({
   </div>
 </section>
 
-<section class="section section--paper" aria-labelledby="ace-title">
+<section class="section section--paper" aria-labelledby="why-title">
+  <div class="wrap split split--wide-text">
+    <div class="split-media">
+      <span class="tab" aria-hidden="true"></span>
+      ${img('why-trainer', 'A trainer presenting to a class at a whiteboard', { sizes: '(max-width: 1020px) 100vw, 42vw' })}
+    </div>
+    <div class="split-body">
+      <p class="eyebrow">About SkillUp SA</p>
+      <h2 id="why-title">${e(home.why.title)}</h2>
+      <p class="lede">${e(home.why.paras[0])}</p>
+      ${paras(home.why.paras.slice(1))}
+      <a class="text-link" href="/about-us">About Us ${icon.arrow}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ace-title">
   <div class="wrap">
     <div class="mission">
       <div class="mission-aside">
-        <p class="eyebrow">ACE Programs Whyalla</p>
+        <p class="eyebrow">ACE Programs</p>
         <h2 id="ace-title">${e(home.ace.title)}</h2>
         <blockquote class="pull"><p>${e(home.ace.quote)}</p></blockquote>
+        <img class="gov-logo" src="/img/gov-sa-supported.jpg" alt="Supported by Government of South Australia" width="160" height="137" loading="lazy">
       </div>
       <div class="mission-body">
         <p class="lede">${e(home.ace.lede)}</p>
@@ -255,24 +265,7 @@ page('/', layout({
       </a>`).join('')}
     </div>
     <div class="programs-foot">
-      <span class="gov"><img src="/img/gov-sa-supported.jpg" alt="" width="70" height="60" loading="lazy">Supported by Government of South Australia</span>
-      <a class="text-link" href="/ace-programs-whyalla">ACE Programs Whyalla ${icon.arrow}</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="why-title">
-  <div class="wrap split split--wide-text">
-    <div class="split-media">
-      <span class="tab" aria-hidden="true"></span>
-      ${img('why-trainer', 'A trainer presenting to a class at a whiteboard', { sizes: '(max-width: 1020px) 100vw, 42vw' })}
-    </div>
-    <div class="split-body">
-      <p class="eyebrow">About SkillUp SA</p>
-      <h2 id="why-title">${e(home.why.title)}</h2>
-      <p class="lede">${e(home.why.paras[0])}</p>
-      ${paras(home.why.paras.slice(1))}
-      <a class="text-link" href="/about-us">About Us ${icon.arrow}</a>
+      <a class="text-link" href="/ace-programs">ACE Programs ${icon.arrow}</a>
     </div>
   </div>
 </section>
@@ -294,24 +287,6 @@ page('/', layout({
         <h3><a href="/our-courses#${c.id}">${e(c.name)}</a></h3>
         <ul>${c.courses.map((x) => `<li><a href="/${x.slug}">${e(x.name)}</a></li>`).join('')}</ul>
       </div>`).join('')}
-    </div>
-  </div>
-</section>
-
-<section class="section section--navy on-dark" aria-labelledby="computer-title">
-  <div class="wrap band">
-    <div class="band-media">
-      ${img('computer-skills', 'Adult learners of all ages learning computer skills in class', { sizes: '(max-width: 1020px) 100vw, 50vw' })}
-      ${arc()}
-    </div>
-    <div>
-      <p class="eyebrow">WorkReady Tech</p>
-      <h2 id="computer-title">${e(home.computer.title)}</h2>
-      ${paras(home.computer.paras)}
-      <div class="hero-actions" style="margin-top:28px">
-        <a class="btn btn--sky" href="/basic-computer-course">WorkReady Tech ${icon.arrow}</a>
-        <a class="btn btn--ghost-light" href="/our-courses">Our Courses</a>
-      </div>
     </div>
   </div>
 </section>
@@ -431,14 +406,14 @@ ${pageHead({ crumbs: [['Our Courses', '/our-courses'], [cat.name, `/our-courses#
 }
 
 // ACE Programs -----------------------------------------------------------------
-page('/ace-programs-whyalla', layout({
-  path: '/ace-programs-whyalla',
-  title: 'ACE Programs Whyalla',
+page('/ace-programs', layout({
+  path: '/ace-programs',
+  title: 'ACE Programs',
   description: home.ace.lede,
   body: `
 ${pageHead({
-  crumbs: [['ACE Programs Whyalla']],
-  eyebrow: 'ACE Programs Whyalla',
+  crumbs: [['ACE Programs']],
+  eyebrow: 'ACE Programs',
   title: 'Adult Community Education (ACE) Programs',
   after: `<span class="gov" style="margin-top:12px"><img src="/img/gov-sa-supported.jpg" alt="" width="70" height="60">Supported by Government of South Australia</span>`,
 })}
@@ -468,8 +443,8 @@ for (const p of acePrograms) {
     og: p.image,
     body: `
 ${pageHead({
-  crumbs: [['ACE Programs Whyalla', '/ace-programs-whyalla'], [p.name]],
-  eyebrow: 'ACE Programs Whyalla',
+  crumbs: [['ACE Programs', '/ace-programs'], [p.name]],
+  eyebrow: 'ACE Programs',
   title: p.name,
   lede: p.blurb,
   after: `<div class="hero-actions" style="margin-top:28px"><a class="btn" href="#enquire">Enquire ${icon.arrow}</a><a class="btn btn--ghost" href="${contact.phoneHref}">${icon.phone} ${e(contact.phone)}</a></div>`,

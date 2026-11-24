@@ -18,9 +18,7 @@ export const contact = {
   email: 'enquiry@skillupsa.com.au',
   postal: ['PO Box 399', 'Walkerville, Adelaide SA 5081'],
   hours: [
-    ['Monday - Friday', '9:00 - 18:00'],
-    ['Saturday', '9:00 - 16:00'],
-    ['Sunday', '9:00 - 14:00'],
+    ['Monday - Friday', '9:00 - 17:00'],
   ],
   mapQuery: '40-44 Patterson Street, Whyalla SA 5600',
   social: [

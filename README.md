@@ -53,6 +53,16 @@ export const CRM_ENQUIRE_URL = 'https://crm.skillupsa.com.au/enquire';
 
 ## What changed, and what was dropped
 
+**Client changes (24 Nov 2026)**
+- Home: the hero photo now shows the whole picture (nobody is cropped out).
+- Home: the Government of SA logo and the "Adult Community Education Programs" link moved out of the hero and into the ACE section.
+- "ACE Programs Whyalla" is now "ACE Programs" everywhere, because programs run across South Australia. The page moved from `/ace-programs-whyalla` to `/ace-programs`, and `vercel.json` redirects the old address.
+- Home: "Why Choose SkillUp SA" (About) now comes before the ACE section.
+- Home: the "Boost your Computer Skills" section is removed.
+- Bigger logo in the header.
+- The "Be future-proof and future-ready" band is shorter.
+- Opening hours are Monday - Friday 9:00 - 17:00 only (Saturday and Sunday removed), in the footer and on the Contact page.
+
 **Structure and layout (copy unchanged)**
 - The two hero blocks on the home page ("Adult Community Education Programs" and "Acquire the Skills You Need to Succeed") are merged into one hero.
 - The home page now shows the four ACE programmes as cards, using their blurbs and images from the ACE page.
