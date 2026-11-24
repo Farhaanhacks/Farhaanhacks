@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  courses, categories, acePrograms, contact, award, slogan, descriptions, CRM_ENQUIRE_URL,
+  courses, categories, acePrograms, contact, award, slogan, descriptions, CRM_ENQUIRE_URL, AWARD_URL, GOV_SUPPORT_URL,
   home, about, team, ourCourses, contactPage,
 } from './site.mjs';
 
@@ -43,6 +43,7 @@ const icon = {
 // The open circle from the SkillUp SA logo, used as a quiet graphic motif.
 const arc = (cls = '') => `<svg class="arc ${cls}" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49" pathLength="100" stroke-dasharray="78 22" stroke-dashoffset="-6"/></svg>`;
 
+const govLink = (inner) => (GOV_SUPPORT_URL ? `<a class="gov-link" href="${GOV_SUPPORT_URL}" target="_blank" rel="noopener">${inner}</a>` : inner);
 const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&t=m&z=15&output=embed`;
 const socialLinks = () => `<div class="socials">${contact.social.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="SkillUp SA on ${n}">${icon[n]}</a>`).join('')}</div>`;
 
@@ -54,7 +55,7 @@ function header(path) {
   const inAce = path === '/ace-programs' || acePrograms.some((p) => path === `/${p.slug}`);
   return `
 <a class="skip" href="#main">Skip to content</a>
-<div class="award" role="note"><div class="wrap">${icon.medal}<span><strong>${e(award)}</strong></span></div></div>
+<a class="award" href="${AWARD_URL}" target="_blank" rel="noopener"><span class="wrap">${icon.medal}<span><strong>${e(award)}</strong></span></span></a>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/" aria-label="SkillUp SA home"><img src="/img/logo-navy.png" alt="SkillUp SA — Training That Transforms" width="600" height="464"></a>
@@ -155,7 +156,7 @@ function footer() {
       <div><h2>Opening hours</h2><dl>${contact.hours.map(([d, h]) => `<dt>${e(d)}</dt><dd>${e(h)}</dd>`).join('')}</dl></div>
       <iframe src="${mapSrc}" title="Map: ${e(contact.mapQuery)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <div class="footer-base"><span>© ${YEAR} SkillUp SA</span><span>${e(award)}</span></div>
+    <div class="footer-base"><span>© ${YEAR} SkillUp SA</span><a href="${AWARD_URL}" target="_blank" rel="noopener">${e(award)}</a></div>
   </div>
 </footer>`;
 }
@@ -246,7 +247,7 @@ page('/', layout({
         <p class="eyebrow">ACE Programs</p>
         <h2 id="ace-title">${e(home.ace.title)}</h2>
         <blockquote class="pull"><p>${e(home.ace.quote)}</p></blockquote>
-        <img class="gov-logo" src="/img/gov-sa-supported.jpg" alt="Supported by Government of South Australia" width="160" height="137" loading="lazy">
+        ${govLink('<img class="gov-logo" src="/img/gov-sa-supported.jpg" alt="Supported by Government of South Australia" width="160" height="137" loading="lazy">')}
       </div>
       <div class="mission-body">
         <p class="lede">${e(home.ace.lede)}</p>
@@ -415,7 +416,7 @@ ${pageHead({
   crumbs: [['ACE Programs']],
   eyebrow: 'ACE Programs',
   title: 'Adult Community Education (ACE) Programs',
-  after: `<span class="gov" style="margin-top:12px"><img src="/img/gov-sa-supported.jpg" alt="" width="70" height="60">Supported by Government of South Australia</span>`,
+  after: govLink(`<span class="gov" style="margin-top:12px"><img src="/img/gov-sa-supported.jpg" alt="" width="70" height="60">Supported by Government of South Australia</span>`),
 })}
 <section class="section" style="padding-top:clamp(40px,5vw,72px)">
   <div class="wrap">

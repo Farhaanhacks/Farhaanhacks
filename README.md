@@ -62,6 +62,8 @@ export const CRM_ENQUIRE_URL = 'https://crm.skillupsa.com.au/enquire';
 - Bigger logo in the header.
 - The "Be future-proof and future-ready" band is shorter.
 - Opening hours are Monday - Friday 9:00 - 17:00 only (Saturday and Sunday removed), in the footer and on the Contact page.
+- The award banner (and the award line in the footer) links to the SA Training Awards ACE Provider of the Year page. The Government of SA logo opens the same page (change `GOV_SUPPORT_URL` in `src/site.mjs` to point it elsewhere). Both open in a new tab.
+- The header logo no longer touches the award banner.
 
 **Structure and layout (copy unchanged)**
 - The two hero blocks on the home page ("Adult Community Education Programs" and "Acquire the Skills You Need to Succeed") are merged into one hero.
