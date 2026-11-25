@@ -137,17 +137,21 @@
     measure();
   });
 
-  // Intro: remove it when it finishes, or straight away on a click or key press
+  // Intro: remove it when it finishes, or straight away on a click, key press, scroll or swipe
   var intro = document.querySelector('.intro');
   if (intro && document.documentElement.classList.contains('has-intro')) {
     var endIntro = function () {
       document.documentElement.classList.remove('has-intro');
       if (intro.parentNode) intro.parentNode.removeChild(intro);
       document.removeEventListener('keydown', endIntro);
+      window.removeEventListener('wheel', endIntro);
+      window.removeEventListener('touchmove', endIntro);
     };
     setTimeout(endIntro, 3250);
     intro.addEventListener('click', endIntro);
     document.addEventListener('keydown', endIntro);
+    window.addEventListener('wheel', endIntro, { passive: true });
+    window.addEventListener('touchmove', endIntro, { passive: true });
   } else if (intro) {
     intro.parentNode.removeChild(intro);
   }

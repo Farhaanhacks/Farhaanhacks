@@ -613,7 +613,7 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 @property --s { syntax: '<number>'; inherits: true; initial-value: 1; }
 @property --h { syntax: '<number>'; inherits: true; initial-value: 0; }
 .intro { display: none; }
-html.has-intro body { overflow: hidden; }
+/* The page is not scroll-locked during the intro: hiding the scrollbar made the page jump sideways on Windows when it came back. Scrolling skips the intro instead. */
 html.has-intro .intro {
   display: block; position: fixed; inset: 0; z-index: 1000; --w: min(66vw, 440px); --s: 1; --h: 0;
   --lift: 48px; --cx: calc(50% - var(--w) * 0.11333); --cy: calc(50% - var(--lift));
