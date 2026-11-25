@@ -345,7 +345,6 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-.cap-body > p, .cap-paras > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
 
 /* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
    The current point is bright, the others fade along a curve. Then the paragraphs fade in.

@@ -95,6 +95,7 @@
     var pinned = false, wheelDist = 1, lift = 0, LIFT = 0.3;   // LIFT: screen heights of scrolling while the list glides up to make room
     var STEP = phone ? 0.12 : 0.24;   // screen heights of scrolling per point
     var GAP = 18;             // px between points
+    var TEXT_GAP = 56;        // px between the last point and the paragraphs
     var FOCAL = 0;            // px from the top of the window to the line the points roll past (set in measure)
     var centres = [];
     box.classList.add('is-wheel');
@@ -114,7 +115,7 @@
       box.querySelector('.cap-pointer').style.top = FOCAL + 'px';
       // Put the paragraphs just under the last point: inside the pinned area if they fit, otherwise right after it
       var last = items[items.length - 1];
-      var below = win.offsetTop + FOCAL + last.offsetHeight / 2 + 32;   // just under the last point, within the pinned area
+      var below = win.offsetTop + FOCAL + last.offsetHeight / 2 + TEXT_GAP;   // just under the last point, within the pinned area
       stage.appendChild(parasBox);
       parasBox.style.marginTop = '';
       parasBox.style.top = below + 'px';
@@ -125,7 +126,7 @@
       if (!pinned) {
         // Too tall to hold on screen (phones): they follow straight after the pinned area, starting just under the last point
         box.appendChild(parasBox);
-        parasBox.style.marginTop = -Math.max(0, stage.offsetHeight - (win.offsetTop + FOCAL + last.offsetHeight / 2) - 32) + 'px';
+        parasBox.style.marginTop = -Math.max(0, stage.offsetHeight - (win.offsetTop + FOCAL + last.offsetHeight / 2) - TEXT_GAP) + 'px';
       }
       wheelDist = (phone ? stage.clientHeight : window.innerHeight) * STEP * (items.length - 1);   // stage height is fixed (100svh), so phones don't jump
       track.style.height = (stage.offsetHeight + wheelDist + (pinned ? window.innerHeight * (READ + (lift ? LIFT : 0)) : 0)) + 'px';
