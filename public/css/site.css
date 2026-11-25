@@ -354,15 +354,16 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .cap-body.is-wheel .cap-track { position: relative; }
 .cap-body.is-wheel .cap-stage {
   position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
-  display: flex; flex-direction: column; justify-content: flex-start; padding-top: 32px;
+  display: flex; flex-direction: column; justify-content: center;
 }
-.cap-body.is-wheel .cap-list-title { margin-bottom: 4px; }
+.cap-body.is-wheel .cap-list-title { margin-bottom: 8px; }
 .cap-paras { position: relative; }
+.cap-stage > .cap-paras { position: absolute; left: 0; right: 0; }
 .cap-paras > p:first-child { margin-top: 0; }
 .cap-body.is-wheel .cap-window {
-  position: relative; height: min(50vh, 420px); overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 62%, transparent);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 62%, transparent);
+  position: relative; height: min(62vh, 520px); overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
 }
 .cap-body.is-wheel .cap-pointer {
   display: block; position: absolute; left: 0; top: 46px; width: 26px; height: 20px; margin-top: -10px;

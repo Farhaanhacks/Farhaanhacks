@@ -86,10 +86,10 @@
     paras.forEach(function (el) { parasBox.appendChild(el); });
     box.appendChild(parasBox);
     var READ = 0.9;           // screen heights of extra scrolling while the paragraphs are held in place
-    var pinned = false, wheelDist = 1;
+    var pinned = false, wheelDist = 1, lift = 0, LIFT = 0.3;   // LIFT: screen heights of scrolling while the list glides up to make room
     var STEP = 0.24;          // screen heights of scrolling per point
     var GAP = 18;             // px between points
-    var FOCAL = 46;           // px from the top of the window to the line the points roll past (set in measure)
+    var FOCAL = 0;            // px from the top of the window to the line the points roll past (set in measure)
     var centres = [];
     box.classList.add('is-wheel');
 
@@ -102,23 +102,27 @@
         y += h + GAP;
         return c;
       });
-      // The roll-past line sits just low enough for the tallest point to fit above it
-      FOCAL = Math.ceil(Math.max.apply(null, items.map(function (li) { return li.offsetHeight; })) / 2) + 10;
+      // The current point sits in the middle of the window
+      var win = box.querySelector('.cap-window');
+      FOCAL = win.offsetHeight / 2;
       box.querySelector('.cap-pointer').style.top = FOCAL + 'px';
       // Put the paragraphs just under the last point: inside the pinned area if they fit, otherwise right after it
-      var win = box.querySelector('.cap-window');
       var last = items[items.length - 1];
-      var pull = Math.max(0, win.offsetHeight - (FOCAL + last.offsetHeight / 2) - 32);
-      parasBox.style.marginTop = -pull + 'px';
+      var below = win.offsetTop + FOCAL + last.offsetHeight / 2 + 32;   // just under the last point, within the pinned area
       stage.appendChild(parasBox);
-      pinned = stage.scrollHeight <= stage.clientHeight + 1;
+      parasBox.style.marginTop = '';
+      parasBox.style.top = below + 'px';
+      // If the text doesn't fit under the centred last point, the list glides up by 'lift' once the wheel finishes
+      lift = Math.max(0, below + parasBox.offsetHeight + 24 - stage.clientHeight);
+      pinned = win.offsetTop + FOCAL - last.offsetHeight / 2 - lift >= 0;   // the last point must still be on screen
+      if (!pinned) { parasBox.style.top = ''; lift = 0; }
       if (!pinned) {
         // Too tall to hold on screen (phones): they follow straight after the pinned area, starting just under the last point
         box.appendChild(parasBox);
         parasBox.style.marginTop = -Math.max(0, stage.offsetHeight - (win.offsetTop + FOCAL + last.offsetHeight / 2) - 32) + 'px';
       }
       wheelDist = window.innerHeight * STEP * (items.length - 1);
-      track.style.height = (stage.offsetHeight + wheelDist + (pinned ? window.innerHeight * READ : 0)) + 'px';
+      track.style.height = (stage.offsetHeight + wheelDist + (pinned ? window.innerHeight * (READ + (lift ? LIFT : 0)) : 0)) + 'px';
       update();
     }
 
@@ -126,15 +130,19 @@
       var vh = window.innerHeight;
       var top = track.getBoundingClientRect().top - parseFloat(getComputedStyle(stage).top);
       var t = Math.max(0, Math.min(1, -top / wheelDist));
+      var g = lift ? Math.max(0, Math.min(1, (-top - wheelDist) / (vh * LIFT))) : 0;   // 0 → 1 while the list glides up
+      g = g * g * (3 - 2 * g);
+      stage.style.transform = g ? 'translateY(' + (-lift * g).toFixed(1) + 'px)' : '';
+      if (lift) box.querySelector('.cap-list-title').style.opacity = (1 - g).toFixed(3);   // the heading would otherwise show through the header bar
       var p = t * (items.length - 1);                 // which point is under the tick (fractional)
       var i0 = Math.floor(p), f = p - i0;
       var c = i0 >= items.length - 1 ? centres[items.length - 1] : centres[i0] + f * (centres[i0 + 1] - centres[i0]);
       items.forEach(function (li, i) {
         var d = i - p, ad = Math.abs(d);
         var y = centres[i] - c;
-        var x = d > 0 ? 34 * (1 - Math.cos(Math.min(d, 4) * 0.55)) : 0;   // upcoming points curve away to the right
+        var x = 34 * (1 - Math.cos(Math.min(ad, 4) * 0.55));   // points above and below curve away to the right
         var s = 1 - Math.min(ad, 3) * 0.07;
-        var o = d < 0 ? Math.max(0, 1 + d * 2.4) : Math.max(0, 1 - d * 0.3);   // passed points fade out quickly
+        var o = Math.max(0, 1 - ad * 0.32) * (i < items.length - 1 ? 1 - g : 1);   // the earlier points clear away as the list glides up
         li.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (FOCAL + y - li.offsetHeight / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
         li.style.opacity = o.toFixed(3);
         li.classList.toggle('is-current', ad < 0.5);
