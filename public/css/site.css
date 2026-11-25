@@ -345,7 +345,7 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-.cap-body > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
+.cap-body > p, .cap-paras > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
 
 /* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
    The current point is bright, the others fade along a curve. Then the paragraphs fade in.
@@ -353,10 +353,12 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .cap-pointer { display: none; }
 .cap-body.is-wheel .cap-track { position: relative; }
 .cap-body.is-wheel .cap-stage {
-  position: sticky; top: var(--header-h);
+  position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
   display: flex; flex-direction: column; justify-content: flex-start; padding-top: 32px;
 }
 .cap-body.is-wheel .cap-list-title { margin-bottom: 4px; }
+.cap-paras { position: relative; }
+.cap-paras > p:first-child { margin-top: 0; }
 .cap-body.is-wheel .cap-window {
   position: relative; height: min(50vh, 420px); overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 62%, transparent);
@@ -374,8 +376,8 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 }
 .cap-body.is-wheel .cap-list li::before { display: none; }
 .cap-body.is-wheel .cap-list li.is-current { color: #fff; }
-.js .cap-body.is-wheel > p { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
-.js .cap-body.is-wheel > p.is-in { opacity: 1; transform: none; }
+.js .cap-body.is-wheel .cap-paras > p { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .cap-body.is-wheel .cap-paras > p.is-in { opacity: 1; transform: none; }
 
 /* SA Training Awards: award statement and highlights video */
 .section--stage { background: var(--navy-deep); color: #fff; }

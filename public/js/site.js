@@ -73,13 +73,20 @@
     });
   });
 
-  // Capability wheel: the list pins while you scroll, turning like a wheel past a fixed tick; the paragraphs follow
+  // Capability wheel: the list pins while you scroll, turning like a wheel past a fixed tick. Then the paragraphs fade in
+  // under the last point and the section stays pinned a little longer so they can be read (if they fit on screen).
   document.querySelectorAll('[data-wheel]').forEach(function (box) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // plain list
     var track = box.querySelector('.cap-track');
     var stage = box.querySelector('.cap-stage');
     var items = Array.prototype.slice.call(box.querySelectorAll('.cap-list li'));
     var paras = Array.prototype.slice.call(box.querySelectorAll(':scope > p'));
+    var parasBox = document.createElement('div');
+    parasBox.className = 'cap-paras';
+    paras.forEach(function (el) { parasBox.appendChild(el); });
+    box.appendChild(parasBox);
+    var READ = 0.9;           // screen heights of extra scrolling while the paragraphs are held in place
+    var pinned = false, wheelDist = 1;
     var STEP = 0.24;          // screen heights of scrolling per point
     var GAP = 18;             // px between points
     var FOCAL = 46;           // px from the top of the window to the line the points roll past (set in measure)
@@ -98,19 +105,27 @@
       // The roll-past line sits just low enough for the tallest point to fit above it
       FOCAL = Math.ceil(Math.max.apply(null, items.map(function (li) { return li.offsetHeight; })) / 2) + 10;
       box.querySelector('.cap-pointer').style.top = FOCAL + 'px';
-      track.style.height = (stage.offsetHeight + window.innerHeight * STEP * (items.length - 1)) + 'px';
-      // Pull the text up into the empty space under the last point, so it follows it closely once the wheel finishes
+      // Put the paragraphs just under the last point: inside the pinned area if they fit, otherwise right after it
       var win = box.querySelector('.cap-window');
       var last = items[items.length - 1];
-      if (paras[0]) paras[0].style.marginTop = -Math.max(0, win.offsetHeight - (FOCAL + last.offsetHeight / 2) - 32) + 'px';
+      var pull = Math.max(0, win.offsetHeight - (FOCAL + last.offsetHeight / 2) - 32);
+      parasBox.style.marginTop = -pull + 'px';
+      stage.appendChild(parasBox);
+      pinned = stage.scrollHeight <= stage.clientHeight + 1;
+      if (!pinned) {
+        // Too tall to hold on screen (phones): they follow straight after the pinned area, starting just under the last point
+        box.appendChild(parasBox);
+        parasBox.style.marginTop = -Math.max(0, stage.offsetHeight - (win.offsetTop + FOCAL + last.offsetHeight / 2) - 32) + 'px';
+      }
+      wheelDist = window.innerHeight * STEP * (items.length - 1);
+      track.style.height = (stage.offsetHeight + wheelDist + (pinned ? window.innerHeight * READ : 0)) + 'px';
       update();
     }
 
     function update() {
       var vh = window.innerHeight;
-      var scrollable = track.offsetHeight - stage.offsetHeight;
       var top = track.getBoundingClientRect().top - parseFloat(getComputedStyle(stage).top);
-      var t = scrollable > 0 ? Math.max(0, Math.min(1, -top / scrollable)) : 0;
+      var t = Math.max(0, Math.min(1, -top / wheelDist));
       var p = t * (items.length - 1);                 // which point is under the tick (fractional)
       var i0 = Math.floor(p), f = p - i0;
       var c = i0 >= items.length - 1 ? centres[items.length - 1] : centres[i0] + f * (centres[i0 + 1] - centres[i0]);
@@ -125,7 +140,7 @@
         li.classList.toggle('is-current', ad < 0.5);
       });
       paras.forEach(function (el, i) {
-        var show = t >= 1 && el.getBoundingClientRect().top < vh * 0.92;
+        var show = t >= 1 && (pinned || el.getBoundingClientRect().top < vh * 0.92);
         el.style.transitionDelay = show ? (0.12 * i) + 's' : '';
         el.classList.toggle('is-in', show);
       });
