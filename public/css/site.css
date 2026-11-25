@@ -347,6 +347,12 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 
 .cap-body > p, .cap-paras > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
 
+/* Capability on phones and tablets: the points fade in one by one as they scroll into view, then the text */
+.js .cap-body.is-reveal .cap-list li,
+.js .cap-body.is-reveal > p { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+.js .cap-body.is-reveal .cap-list li.is-in,
+.js .cap-body.is-reveal > p.is-in { opacity: 1; transform: none; }
+
 /* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
    The current point is bright, the others fade along a curve. Then the paragraphs fade in.
    Only switched on by site.js (.is-wheel); without JS, or with reduced motion, the plain two-column list shows. */
@@ -625,8 +631,8 @@ html.has-intro .intro {
 .intro::before {
   content: ''; position: absolute; inset: 0; background: var(--navy);
   --r: calc(var(--w) * 0.38 * var(--s) * var(--h));
-  -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
-          mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
+  -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent calc(var(--r) - 1px), #000 var(--r));
+          mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent calc(var(--r) - 1px), #000 var(--r));
 }
 .intro-logo {
   position: absolute; width: var(--w); left: calc(50% - var(--w) / 2); top: calc(50% - var(--w) * 0.38667 - var(--lift));

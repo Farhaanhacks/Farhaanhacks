@@ -77,6 +77,26 @@
   // under the last point and the section stays pinned a little longer so they can be read (if they fit on screen).
   document.querySelectorAll('[data-wheel]').forEach(function (box) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // plain list
+    var wide = window.matchMedia('(min-width: 1021px)');
+    wide.addEventListener('change', function () { location.reload(); });   // switch between the two versions cleanly
+    if (!wide.matches) {
+      // Phones and tablets: no pinning (mobile address bars change the screen height as you scroll, which made the wheel jump).
+      // Each point fades in as it scrolls into view, then the paragraphs.
+      if (!('IntersectionObserver' in window)) return;
+      box.classList.add('is-reveal');
+      var queue = 0, timer;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          en.target.style.transitionDelay = (0.09 * queue++) + 's';
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        });
+        clearTimeout(timer); timer = setTimeout(function () { queue = 0; }, 120);
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+      box.querySelectorAll('.cap-list li, :scope > p').forEach(function (el) { io.observe(el); });
+      return;
+    }
     var track = box.querySelector('.cap-track');
     var stage = box.querySelector('.cap-stage');
     var items = Array.prototype.slice.call(box.querySelectorAll('.cap-list li'));
@@ -155,7 +175,12 @@
     }
 
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', measure);
+    var lastW = window.innerWidth;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastW) return;   // ignore height-only changes (browser toolbars showing and hiding)
+      lastW = window.innerWidth;
+      measure();
+    });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
     measure();
   });
