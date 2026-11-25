@@ -129,6 +129,21 @@
     measure();
   });
 
+  // Intro: remove it when it finishes, or straight away on a click or key press
+  var intro = document.querySelector('.intro');
+  if (intro && document.documentElement.classList.contains('has-intro')) {
+    var endIntro = function () {
+      document.documentElement.classList.remove('has-intro');
+      if (intro.parentNode) intro.parentNode.removeChild(intro);
+      document.removeEventListener('keydown', endIntro);
+    };
+    setTimeout(endIntro, 2200);
+    intro.addEventListener('click', endIntro);
+    document.addEventListener('keydown', endIntro);
+  } else if (intro) {
+    intro.parentNode.removeChild(intro);
+  }
+
   function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

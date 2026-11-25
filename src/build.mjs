@@ -166,7 +166,7 @@ function layout({ path, title, description = '', og = 'og-logo', body, enquireOp
   return `<!doctype html>
 <html lang="en-AU">
 <head>
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname==='/'&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&(location.search.indexOf('intro')>-1||!sessionStorage.getItem('su-intro'))){d.classList.add('has-intro');sessionStorage.setItem('su-intro','1')}}catch(e){}})()</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${e(fullTitle)}</title>
@@ -185,6 +185,7 @@ ${description ? `<meta property="og:description" content="${e(description)}">` :
 <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
+${path === '/' ? `<div class="intro" aria-hidden="true"><div class="intro-logo"><div class="intro-mark"><svg class="intro-ring" viewBox="0 0 600 464"><path d="M444 141A230 230 0 1 0 444 323" fill="none" stroke="#0080ff" stroke-width="4" stroke-linecap="round"/></svg><img class="intro-text" src="/img/logo-white-text.png" alt="" width="600" height="464"></div></div></div>` : ''}
 ${header(path)}
 <main id="main">
 ${body}

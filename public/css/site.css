@@ -606,3 +606,32 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   .embed-placeholder { min-height: 320px; }
   .outro { padding: 24px; }
 }
+
+/* ---------------------------------------------------------------- Intro (home page, once per visit)
+   Navy screen with the logo; then it zooms into the logo's circle, which opens up to show the site.
+   Added by the inline script in <head> (not with reduced motion; add ?intro to the address to replay). */
+@property --s { syntax: '<number>'; inherits: true; initial-value: 1; }
+@property --h { syntax: '<number>'; inherits: true; initial-value: 0; }
+.intro { display: none; }
+html.has-intro body { overflow: hidden; }
+html.has-intro .intro {
+  display: block; position: fixed; inset: 0; z-index: 1000; --w: min(66vw, 440px); --s: 1; --h: 0;
+  animation: intro-zoom 1.05s cubic-bezier(.7, 0, .84, 0) .95s both, intro-out .3s ease 1.85s both;
+}
+.intro::before {
+  content: ''; position: absolute; inset: 0; background: var(--navy);
+  --r: calc(var(--w) * 0.38 * var(--s) * var(--h));
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
+          mask-image: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
+}
+.intro-logo {
+  position: absolute; width: var(--w); left: calc(50% - var(--w) * 0.38667); top: calc(50% - var(--w) * 0.38667);
+  transform: scale(var(--s)); transform-origin: 38.667% 50%;
+}
+.intro-mark { position: relative; animation: intro-in .7s cubic-bezier(.2, .7, .2, 1) both; }
+.intro-ring { display: block; width: 100%; height: auto; }
+.intro-text { position: absolute; inset: 0; width: 100%; height: auto; animation: intro-text .3s ease .95s both; }
+@keyframes intro-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes intro-text { to { opacity: 0; } }
+@keyframes intro-zoom { 0% { --s: 1; --h: 0; } 18% { --h: 1; } 100% { --s: 16; --h: 1; } }
+@keyframes intro-out { to { opacity: 0; visibility: hidden; } }
