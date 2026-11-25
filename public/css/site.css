@@ -138,6 +138,7 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   text-decoration: none; transition: background-color .15s ease, box-shadow .15s ease, transform .1s ease;
 }
 .gov-link .gov-logo { margin-top: 0; }
+.mission-aside .gov-link { display: table; margin: 20px auto 0; }
 .gov-link .gov { margin-top: 0; }
 .gov-link:hover, .gov-link:focus-visible { box-shadow: 0 0 0 2px var(--sky); }
 .gov-link:active { box-shadow: 0 0 0 3px var(--blue); transform: scale(0.98); }
