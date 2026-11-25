@@ -345,14 +345,35 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-/* Capability: the points appear one by one as you scroll, then the text (only with JS; everything shows without it) */
-.js .cap-body[data-reveal] .cap-list li,
-.js .cap-body[data-reveal] > p { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
-.js .cap-body[data-reveal] .cap-list li.is-in,
-.js .cap-body[data-reveal] > p.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .js .cap-body[data-reveal] .cap-list li, .js .cap-body[data-reveal] > p { opacity: 1; transform: none; }
+/* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
+   The current point is bright, the others fade along a curve. Then the paragraphs fade in.
+   Only switched on by site.js (.is-wheel); without JS, or with reduced motion, the plain two-column list shows. */
+.cap-pointer { display: none; }
+.cap-body.is-wheel .cap-track { position: relative; }
+.cap-body.is-wheel .cap-stage {
+  position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
+  display: flex; flex-direction: column; justify-content: center;
 }
+.cap-body.is-wheel .cap-list-title { margin-bottom: 8px; }
+.cap-body.is-wheel .cap-window {
+  position: relative; height: min(62vh, 520px); overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+}
+.cap-body.is-wheel .cap-pointer {
+  display: block; position: absolute; left: 0; top: 50%; width: 26px; height: 20px; margin-top: -10px;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.cap-body.is-wheel .cap-list { display: block; position: absolute; inset: 0 0 0 46px; margin: 0; }
+.cap-body.is-wheel .cap-list li {
+  position: absolute; left: 0; right: 0; top: 50%; padding: 0;
+  font-size: clamp(1.15rem, 0.95rem + 0.9vw, 1.6rem); line-height: 1.3; color: rgba(255,255,255,.55);
+  transform-origin: left center; will-change: transform, opacity; transition: color .25s ease;
+}
+.cap-body.is-wheel .cap-list li::before { display: none; }
+.cap-body.is-wheel .cap-list li.is-current { color: #fff; }
+.js .cap-body.is-wheel > p { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .cap-body.is-wheel > p.is-in { opacity: 1; transform: none; }
 
 /* SA Training Awards: award statement and highlights video */
 .section--stage { background: var(--navy-deep); color: #fff; }

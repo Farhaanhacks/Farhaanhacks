@@ -322,9 +322,16 @@ page('/', layout({
         <a class="btn btn--ghost-light" href="/our-courses">Our Courses</a>
       </div>
     </div>
-    <div class="cap-body" data-reveal>
-      <h3 class="cap-list-title">${e(home.capability.listTitle)}</h3>
-      <ul class="cap-list">${home.capability.list.map((x) => `<li>${e(x)}</li>`).join('')}</ul>
+    <div class="cap-body" data-wheel>
+      <div class="cap-track">
+        <div class="cap-stage">
+          <h3 class="cap-list-title">${e(home.capability.listTitle)}</h3>
+          <div class="cap-window">
+            <span class="cap-pointer" aria-hidden="true"></span>
+            <ul class="cap-list">${home.capability.list.map((x) => `<li>${e(x)}</li>`).join('')}</ul>
+          </div>
+        </div>
+      </div>
       ${paras(home.capability.paras)}
     </div>
   </div>

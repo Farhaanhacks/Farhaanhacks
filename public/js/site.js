@@ -73,33 +73,60 @@
     });
   });
 
-  // Capability list: as the list moves up the screen, its points appear one at a time; the paragraphs follow once all points are in
-  document.querySelectorAll('[data-reveal]').forEach(function (box) {
+  // Capability wheel: the list pins while you scroll, turning like a wheel past a fixed tick; the paragraphs follow
+  document.querySelectorAll('[data-wheel]').forEach(function (box) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // plain list
+    var track = box.querySelector('.cap-track');
+    var stage = box.querySelector('.cap-stage');
     var items = Array.prototype.slice.call(box.querySelectorAll('.cap-list li'));
     var paras = Array.prototype.slice.call(box.querySelectorAll(':scope > p'));
-    var list = box.querySelector('.cap-list');
-    if (!list || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      items.concat(paras).forEach(function (el) { el.classList.add('is-in'); });
-      return;
+    var STEP = 0.24;          // screen heights of scrolling per point
+    var GAP = 18;             // px between points
+    var centres = [];
+    box.classList.add('is-wheel');
+
+    function measure() {
+      // Lay the points out in a column (as measured at full size) to get each one's centre
+      var y = 0;
+      centres = items.map(function (li) {
+        li.style.transform = 'none';
+        var h = li.offsetHeight, c = y + h / 2;
+        y += h + GAP;
+        return c;
+      });
+      track.style.height = (stage.offsetHeight + window.innerHeight * STEP * (items.length - 1)) + 'px';
+      update();
     }
+
     function update() {
       var vh = window.innerHeight;
-      var r = list.getBoundingClientRect();
-      // 0 when the top of the list is 85% down the screen, 1 when it reaches 30% (mobile lists are longer, so use the list's height)
-      var start = vh * 0.85, end = Math.min(vh * 0.30, start - r.height * 0.6);
-      var p = (start - r.top) / (start - end);
-      var shown = Math.max(0, Math.min(items.length, Math.floor(p * items.length + 0.5)));
-      items.forEach(function (li, i) { li.classList.toggle('is-in', i < shown); });
-      var all = shown === items.length;
+      var scrollable = track.offsetHeight - stage.offsetHeight;
+      var top = track.getBoundingClientRect().top - parseFloat(getComputedStyle(stage).top);
+      var t = scrollable > 0 ? Math.max(0, Math.min(1, -top / scrollable)) : 0;
+      var p = t * (items.length - 1);                 // which point is under the tick (fractional)
+      var i0 = Math.floor(p), f = p - i0;
+      var c = i0 >= items.length - 1 ? centres[items.length - 1] : centres[i0] + f * (centres[i0 + 1] - centres[i0]);
+      items.forEach(function (li, i) {
+        var d = i - p, ad = Math.abs(d);
+        var y = centres[i] - c;
+        var x = 34 * (1 - Math.cos(Math.min(ad, 4) * 0.55));   // curve away to the right
+        var s = 1 - Math.min(ad, 3) * 0.07;
+        var o = Math.max(0, 1 - ad * 0.32);
+        li.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (y - li.offsetHeight / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+        li.style.opacity = o.toFixed(3);
+        li.classList.toggle('is-current', ad < 0.5);
+      });
       paras.forEach(function (el, i) {
-        var top = el.getBoundingClientRect().top;
-        el.classList.toggle('is-in', all && top < vh * 0.92);
-        if (all && top < vh * 0.92) el.style.transitionDelay = (0.12 * (i + 1)) + 's'; else el.style.transitionDelay = '';
+        var show = t >= 1 && el.getBoundingClientRect().top < vh * 0.92;
+        el.style.transitionDelay = show ? (0.12 * i) + 's' : '';
+        el.classList.toggle('is-in', show);
       });
     }
+
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    measure();
   });
 
   function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
