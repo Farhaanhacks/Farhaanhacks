@@ -166,6 +166,7 @@ function layout({ path, title, description = '', og = 'og-logo', body, enquireOp
   return `<!doctype html>
 <html lang="en-AU">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${e(fullTitle)}</title>
@@ -321,7 +322,7 @@ page('/', layout({
         <a class="btn btn--ghost-light" href="/our-courses">Our Courses</a>
       </div>
     </div>
-    <div>
+    <div class="cap-body" data-reveal>
       <h3 class="cap-list-title">${e(home.capability.listTitle)}</h3>
       <ul class="cap-list">${home.capability.list.map((x) => `<li>${e(x)}</li>`).join('')}</ul>
       ${paras(home.capability.paras)}

@@ -29,7 +29,7 @@ Pointing skillupsa.com.au at this site is a separate step, done later in the dom
 | `src/descriptions.json` | Meta descriptions copied from the live site |
 | `src/build.mjs` | Page templates and the build (no dependencies) |
 | `public/css/site.css` | All styles. Brand colours are tokens at the top |
-| `public/js/site.js` | Menus and mobile nav |
+| `public/js/site.js` | Menus and mobile nav, the awards video, and the capability scroll effect |
 | `public/img/` | Every image from the live site, downloaded, renamed and compressed (11 MB, down from 37 MB) |
 | `vercel.json` | Ready for Vercel: build command, output folder, clean URLs, `/contact-zUntuk` → `/contact` redirect |
 
@@ -68,6 +68,7 @@ export const CRM_ENQUIRE_URL = 'https://crm.skillupsa.com.au/enquire';
 - Home: new "Capability Statement" band (navy, text only: heading and intro on the left, capabilities on the right), in the spot where "Boost your Computer Skills" used to be.
 - Home: new SA Training Awards 2026 section straight after the top (hero) section, before About. It has the award statement, a link to the SA Skills Commission page, and the "2026 SA Training Awards Highlights" video (SA Skills Commission, Vimeo). The video shows the awards photo first and plays in place when clicked, with Vimeo's own fullscreen button. Nothing loads from Vimeo until someone presses play.
 - Home: the Government of SA logo is centred under the ACE quote.
+- Home: in the Capability Statement band, the points appear one by one as you scroll, then the two paragraphs. Visitors who turn off animations in their device settings, or have JavaScript off, see everything straight away.
 
 **Structure and layout (copy unchanged)**
 - The two hero blocks on the home page ("Adult Community Education Programs" and "Acquire the Skills You Need to Succeed") are merged into one hero.
