@@ -82,6 +82,7 @@
     var paras = Array.prototype.slice.call(box.querySelectorAll(':scope > p'));
     var STEP = 0.24;          // screen heights of scrolling per point
     var GAP = 18;             // px between points
+    var FOCAL = 46;           // px from the top of the window to the line the points roll past (set in measure)
     var centres = [];
     box.classList.add('is-wheel');
 
@@ -94,7 +95,14 @@
         y += h + GAP;
         return c;
       });
+      // The roll-past line sits just low enough for the tallest point to fit above it
+      FOCAL = Math.ceil(Math.max.apply(null, items.map(function (li) { return li.offsetHeight; })) / 2) + 10;
+      box.querySelector('.cap-pointer').style.top = FOCAL + 'px';
       track.style.height = (stage.offsetHeight + window.innerHeight * STEP * (items.length - 1)) + 'px';
+      // Pull the text up into the empty space under the last point, so it follows it closely once the wheel finishes
+      var win = box.querySelector('.cap-window');
+      var last = items[items.length - 1];
+      if (paras[0]) paras[0].style.marginTop = -Math.max(0, win.offsetHeight - (FOCAL + last.offsetHeight / 2) - 32) + 'px';
       update();
     }
 
@@ -109,10 +117,10 @@
       items.forEach(function (li, i) {
         var d = i - p, ad = Math.abs(d);
         var y = centres[i] - c;
-        var x = 34 * (1 - Math.cos(Math.min(ad, 4) * 0.55));   // curve away to the right
+        var x = d > 0 ? 34 * (1 - Math.cos(Math.min(d, 4) * 0.55)) : 0;   // upcoming points curve away to the right
         var s = 1 - Math.min(ad, 3) * 0.07;
-        var o = Math.max(0, 1 - ad * 0.32);
-        li.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (y - li.offsetHeight / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+        var o = d < 0 ? Math.max(0, 1 + d * 2.4) : Math.max(0, 1 - d * 0.3);   // passed points fade out quickly
+        li.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (FOCAL + y - li.offsetHeight / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
         li.style.opacity = o.toFixed(3);
         li.classList.toggle('is-current', ad < 0.5);
       });
@@ -137,7 +145,7 @@
       if (intro.parentNode) intro.parentNode.removeChild(intro);
       document.removeEventListener('keydown', endIntro);
     };
-    setTimeout(endIntro, 2200);
+    setTimeout(endIntro, 3250);
     intro.addEventListener('click', endIntro);
     document.addEventListener('keydown', endIntro);
   } else if (intro) {

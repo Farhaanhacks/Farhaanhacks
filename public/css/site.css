@@ -345,7 +345,7 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
-.cap-body > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 600; line-height: 1.6; color: #fff; }
+.cap-body > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
 
 /* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
    The current point is bright, the others fade along a curve. Then the paragraphs fade in.
@@ -353,22 +353,22 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .cap-pointer { display: none; }
 .cap-body.is-wheel .cap-track { position: relative; }
 .cap-body.is-wheel .cap-stage {
-  position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
-  display: flex; flex-direction: column; justify-content: center;
+  position: sticky; top: var(--header-h);
+  display: flex; flex-direction: column; justify-content: flex-start; padding-top: 32px;
 }
-.cap-body.is-wheel .cap-list-title { margin-bottom: 8px; }
+.cap-body.is-wheel .cap-list-title { margin-bottom: 4px; }
 .cap-body.is-wheel .cap-window {
-  position: relative; height: min(62vh, 520px); overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-          mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  position: relative; height: min(50vh, 420px); overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 62%, transparent);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 62%, transparent);
 }
 .cap-body.is-wheel .cap-pointer {
-  display: block; position: absolute; left: 0; top: 50%; width: 26px; height: 20px; margin-top: -10px;
+  display: block; position: absolute; left: 0; top: 46px; width: 26px; height: 20px; margin-top: -10px;
   background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1.5 7.5l5 5L18.5 1.5' fill='none' stroke='%2377d4fc' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 .cap-body.is-wheel .cap-list { display: block; position: absolute; inset: 0 0 0 46px; margin: 0; }
 .cap-body.is-wheel .cap-list li {
-  position: absolute; left: 0; right: 0; top: 50%; padding: 0;
+  position: absolute; left: 0; right: 0; top: 0; padding: 0;
   font-size: clamp(1.15rem, 0.95rem + 0.9vw, 1.6rem); line-height: 1.3; color: rgba(255,255,255,.55);
   transform-origin: left center; will-change: transform, opacity; transition: color .25s ease;
 }
@@ -616,22 +616,32 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 html.has-intro body { overflow: hidden; }
 html.has-intro .intro {
   display: block; position: fixed; inset: 0; z-index: 1000; --w: min(66vw, 440px); --s: 1; --h: 0;
-  animation: intro-zoom 1.05s cubic-bezier(.7, 0, .84, 0) .95s both, intro-out .3s ease 1.85s both;
+  --lift: 48px; --cx: calc(50% - var(--w) * 0.11333); --cy: calc(50% - var(--lift));
+  animation: intro-zoom 1.05s cubic-bezier(.7, 0, .84, 0) 2s both, intro-out .3s ease 2.9s both;
 }
 .intro::before {
   content: ''; position: absolute; inset: 0; background: var(--navy);
   --r: calc(var(--w) * 0.38 * var(--s) * var(--h));
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
-          mask-image: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
+  -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
+          mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
 }
 .intro-logo {
-  position: absolute; width: var(--w); left: calc(50% - var(--w) * 0.38667); top: calc(50% - var(--w) * 0.38667);
+  position: absolute; width: var(--w); left: calc(50% - var(--w) / 2); top: calc(50% - var(--w) * 0.38667 - var(--lift));
   transform: scale(var(--s)); transform-origin: 38.667% 50%;
 }
 .intro-mark { position: relative; animation: intro-in .7s cubic-bezier(.2, .7, .2, 1) both; }
 .intro-ring { display: block; width: 100%; height: auto; }
-.intro-text { position: absolute; inset: 0; width: 100%; height: auto; animation: intro-text .3s ease .95s both; }
+.intro-text { position: absolute; inset: 0; width: 100%; height: auto; animation: intro-text .3s ease 2s both; }
 @keyframes intro-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
 @keyframes intro-text { to { opacity: 0; } }
+.intro-award {
+  position: absolute; left: 50%; top: calc(50% - var(--lift) + var(--w) * 0.38667 + 28px); transform: translateX(-50%);
+  width: min(calc(100vw - 32px), 560px); margin: 0; display: flex; align-items: center; justify-content: center; gap: 14px;
+  color: #fff; font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem); font-weight: 600; line-height: 1.35; text-align: left;
+  animation: intro-award-in .7s cubic-bezier(.2, .7, .2, 1) .45s both, intro-text .3s ease 2s forwards;
+}
+.intro-award svg { width: 40px; height: 40px; flex: none; color: var(--sky); }
+.intro-award-kicker { display: block; font-size: .72em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); margin-bottom: 4px; }
+@keyframes intro-award-in { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translateX(-50%); } }
 @keyframes intro-zoom { 0% { --s: 1; --h: 0; } 18% { --h: 1; } 100% { --s: 16; --h: 1; } }
 @keyframes intro-out { to { opacity: 0; visibility: hidden; } }

@@ -185,7 +185,7 @@ ${description ? `<meta property="og:description" content="${e(description)}">` :
 <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-${path === '/' ? `<div class="intro" aria-hidden="true"><div class="intro-logo"><div class="intro-mark"><svg class="intro-ring" viewBox="0 0 600 464"><path d="M444 141A230 230 0 1 0 444 323" fill="none" stroke="#0080ff" stroke-width="4" stroke-linecap="round"/></svg><img class="intro-text" src="/img/logo-white-text.png" alt="" width="600" height="464"></div></div></div>` : ''}
+${path === '/' ? `<div class="intro" aria-hidden="true"><div class="intro-logo"><div class="intro-mark"><svg class="intro-ring" viewBox="0 0 600 464"><path d="M444 141A230 230 0 1 0 444 323" fill="none" stroke="#0080ff" stroke-width="4" stroke-linecap="round"/></svg><img class="intro-text" src="/img/logo-white-text.png" alt="" width="600" height="464"></div></div><p class="intro-award">${icon.medal}<span><span class="intro-award-kicker">Proud Winner · 2026 SA Training Awards</span>Adult Community Education Provider of the Year</span></p></div>` : ''}
 ${header(path)}
 <main id="main">
 ${body}
