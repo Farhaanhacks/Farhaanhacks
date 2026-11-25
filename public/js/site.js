@@ -74,29 +74,15 @@
   });
 
   // Capability wheel: the list pins while you scroll, turning like a wheel past a fixed tick. Then the paragraphs fade in
-  // under the last point and the section stays pinned a little longer so they can be read (if they fit on screen).
+  // under the last point; on desktop the section stays pinned a little longer so they can be read (if they fit on screen).
   document.querySelectorAll('[data-wheel]').forEach(function (box) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // plain list
     var wide = window.matchMedia('(min-width: 1021px)');
     wide.addEventListener('change', function () { location.reload(); });   // switch between the two versions cleanly
-    if (!wide.matches) {
-      // Phones and tablets: no pinning (mobile address bars change the screen height as you scroll, which made the wheel jump).
-      // Each point fades in as it scrolls into view, then the paragraphs.
-      if (!('IntersectionObserver' in window)) return;
-      box.classList.add('is-reveal');
-      var queue = 0, timer;
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          en.target.style.transitionDelay = (0.09 * queue++) + 's';
-          en.target.classList.add('is-in');
-          io.unobserve(en.target);
-        });
-        clearTimeout(timer); timer = setTimeout(function () { queue = 0; }, 120);
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
-      box.querySelectorAll('.cap-list li, :scope > p').forEach(function (el) { io.observe(el); });
-      return;
-    }
+    // Phones and tablets get a quicker wheel (about one screen of swiping instead of three) and no extra hold for the text,
+    // so scrolling never feels stuck. Its scroll distance comes from a height that doesn't change when the browser's
+    // address bar shows or hides (that change is what made the wheel jump before).
+    var phone = !wide.matches;
     var track = box.querySelector('.cap-track');
     var stage = box.querySelector('.cap-stage');
     var items = Array.prototype.slice.call(box.querySelectorAll('.cap-list li'));
@@ -107,7 +93,7 @@
     box.appendChild(parasBox);
     var READ = 0.9;           // screen heights of extra scrolling while the paragraphs are held in place
     var pinned = false, wheelDist = 1, lift = 0, LIFT = 0.3;   // LIFT: screen heights of scrolling while the list glides up to make room
-    var STEP = 0.24;          // screen heights of scrolling per point
+    var STEP = phone ? 0.12 : 0.24;   // screen heights of scrolling per point
     var GAP = 18;             // px between points
     var FOCAL = 0;            // px from the top of the window to the line the points roll past (set in measure)
     var centres = [];
@@ -134,14 +120,14 @@
       parasBox.style.top = below + 'px';
       // If the text doesn't fit under the centred last point, the list glides up by 'lift' once the wheel finishes
       lift = Math.max(0, below + parasBox.offsetHeight + 24 - stage.clientHeight);
-      pinned = win.offsetTop + FOCAL - last.offsetHeight / 2 - lift >= 0;   // the last point must still be on screen
+      pinned = !phone && win.offsetTop + FOCAL - last.offsetHeight / 2 - lift >= 0;   // the last point must still be on screen
       if (!pinned) { parasBox.style.top = ''; lift = 0; }
       if (!pinned) {
         // Too tall to hold on screen (phones): they follow straight after the pinned area, starting just under the last point
         box.appendChild(parasBox);
         parasBox.style.marginTop = -Math.max(0, stage.offsetHeight - (win.offsetTop + FOCAL + last.offsetHeight / 2) - 32) + 'px';
       }
-      wheelDist = window.innerHeight * STEP * (items.length - 1);
+      wheelDist = (phone ? stage.clientHeight : window.innerHeight) * STEP * (items.length - 1);   // stage height is fixed (100svh), so phones don't jump
       track.style.height = (stage.offsetHeight + wheelDist + (pinned ? window.innerHeight * (READ + (lift ? LIFT : 0)) : 0)) + 'px';
       update();
     }

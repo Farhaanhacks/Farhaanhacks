@@ -347,12 +347,6 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 
 .cap-body > p, .cap-paras > p { font-size: clamp(1.1rem, 1.02rem + 0.3vw, 1.25rem); font-weight: 400; line-height: 1.6; color: #fff; }
 
-/* Capability on phones and tablets: the points fade in one by one as they scroll into view, then the text */
-.js .cap-body.is-reveal .cap-list li,
-.js .cap-body.is-reveal > p { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
-.js .cap-body.is-reveal .cap-list li.is-in,
-.js .cap-body.is-reveal > p.is-in { opacity: 1; transform: none; }
-
 /* Capability wheel: while the list is pinned, scrolling turns it like a wheel past a fixed tick (the pointer).
    The current point is bright, the others fade along a curve. Then the paragraphs fade in.
    Only switched on by site.js (.is-wheel); without JS, or with reduced motion, the plain two-column list shows. */
@@ -370,6 +364,10 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   position: relative; height: min(62vh, 520px); overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
           mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+}
+@media (max-width: 1020px) {
+  /* Phones: size the window from the small-viewport height, which stays the same when the address bar hides */
+  .cap-body.is-wheel .cap-window { height: min(56vh, 460px); height: min(56svh, 460px); }
 }
 .cap-body.is-wheel .cap-pointer {
   display: block; position: absolute; left: 0; top: 46px; width: 26px; height: 20px; margin-top: -10px;
