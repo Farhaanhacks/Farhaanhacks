@@ -440,13 +440,32 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   padding: clamp(24px, 3vw, 40px); box-shadow: 0 40px 80px -60px rgba(1,12,128,.45);
 }
 .embed-slot::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy) 0 40%, var(--blue) 40% 75%, var(--sky) 75%); border-radius: 12px 12px 0 0; }
-.embed-slot iframe { display: block; width: 100%; height: 640px; border: 0; transition: height .2s ease; }
-.embed-slot.is-fallback iframe { display: none; }
-.embed-fallback { min-height: 320px; display: grid; place-content: center; text-align: center; gap: 12px; padding: 24px 8px; color: var(--ink-soft); }
-.embed-fallback[hidden] { display: none; }
-.embed-fallback strong { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); font-weight: 560; }
-.embed-fallback-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
-.embed-fallback-actions svg { width: 18px; height: 18px; }
+/* Enquiry form (styled like the old Hostinger form) */
+.enquiry-form { display: grid; gap: 22px; }
+.ef { display: grid; gap: 8px; }
+.ef-label { color: var(--navy); font-size: 0.95rem; }
+.ef input, .ef textarea {
+  width: 100%; border: 1px solid var(--blue); border-radius: 4px; background: #fff; color: var(--ink);
+  font: inherit; font-size: 1rem; transition: border-color .15s ease, box-shadow .15s ease;
+}
+.ef input { height: 54px; padding: 0 16px; }
+.ef textarea { min-height: 120px; padding: 14px 16px; resize: vertical; }
+.ef input::placeholder, .ef textarea::placeholder { color: #7d84b8; opacity: 1; }
+.ef input:focus, .ef textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0,128,255,.18); }
+.ef.has-error input, .ef.has-error textarea { border-color: #b42335; }
+.ef-error { color: #b42335; font-size: 0.9rem; }
+.ef-error[hidden], .ef-alert[hidden], .ef-done[hidden], .enquiry-form[hidden] { display: none; }
+.ef-alert { margin: 0; padding: 10px 14px; border-radius: 6px; background: #fce9ec; color: #b42335; }
+.ef-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.ef-submit {
+  justify-self: center; margin-top: 6px; padding: 15px 60px; border: 0; border-radius: 6px;
+  background: var(--blue); color: #fff; font: inherit; font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  transition: background-color .15s ease;
+}
+.ef-submit:hover { background: #006fdc; }
+.ef-submit:disabled { opacity: .7; cursor: default; }
+.ef-done { min-height: 320px; display: grid; place-content: center; gap: 10px; text-align: center; color: var(--ink-soft); }
+.ef-done strong { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); font-weight: 560; }
 
 /* ---------------------------------------------------------------- Footer */
 .site-footer { background: var(--navy); color: rgba(255,255,255,.82); font-size: 1rem; }

@@ -172,24 +172,41 @@
     measure();
   });
 
-  // Enquiry form from the CRM: the frame takes the form's height (the CRM sends it), and if the form doesn't
-  // report in shortly after loading (offline, blocked, CRM down), the box shows the phone and email instead.
-  document.querySelectorAll('[data-crm-embed]').forEach(function (slot) {
-    var frame = slot.querySelector('iframe');
-    var fallback = slot.querySelector('.embed-fallback');
-    if (!frame || !fallback) return;
-    var origin; try { origin = new URL(frame.src).origin; } catch (err) { return; }
-    var heard = false, timer;
-    function showFallback() { slot.classList.add('is-fallback'); fallback.hidden = false; }
-    window.addEventListener('message', function (ev) {
-      if (ev.origin !== origin || ev.source !== frame.contentWindow || !ev.data || ev.data.type !== 'skillup-enquire-height') return;
-      heard = true; clearTimeout(timer);
-      slot.classList.remove('is-fallback'); fallback.hidden = true;
-      var h = Number(ev.data.height);
-      if (h > 100 && h < 4000) frame.style.height = h + 'px';
+  // Enquiry form: sends to the CRM, which saves it as a lead. Shows the CRM's field messages, or a thank-you.
+  document.querySelectorAll('form[data-enquiry]').forEach(function (form) {
+    var alertBox = form.querySelector('.ef-alert');
+    var done = form.parentNode.querySelector('.ef-done');
+    var button = form.querySelector('.ef-submit');
+    var trouble = 'Your enquiry couldn\'t be sent. Please call 0405 124 211 or email enquiry@skillupsa.com.au.';
+    form.noValidate = true;   // the CRM checks the details and we show its messages
+    form.elements.started.value = String(Date.now());
+    function showDone() { form.hidden = true; done.hidden = false; }
+    if (/[?&]enquiry=sent\b/.test(location.search)) showDone();   // came back from a send without JavaScript
+    function clear() {
+      alertBox.hidden = true;
+      form.querySelectorAll('.ef').forEach(function (f) { f.classList.remove('has-error'); });
+      form.querySelectorAll('.ef-error').forEach(function (s) { s.hidden = true; s.textContent = ''; });
+    }
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      clear();
+      button.disabled = true; button.textContent = 'Sending…';
+      fetch(form.action, { method: 'POST', body: new URLSearchParams(new FormData(form)), headers: { Accept: 'application/json' } })
+        .then(function (res) { return res.json().catch(function () { return {}; }); })
+        .then(function (data) {
+          if (data.ok) return showDone();
+          var errs = data.fieldErrors || {};
+          Object.keys(errs).forEach(function (name) {
+            var s = form.querySelector('[data-error-for="' + name + '"]');
+            if (s) { s.textContent = errs[name]; s.hidden = false; s.parentNode.classList.add('has-error'); }
+          });
+          alertBox.textContent = data.error || trouble; alertBox.hidden = false;
+          var first = form.querySelector('.has-error input, .has-error textarea');
+          if (first) first.focus();
+        })
+        .catch(function () { alertBox.textContent = trouble; alertBox.hidden = false; })
+        .then(function () { button.disabled = false; button.textContent = 'Submit'; });
     });
-    frame.addEventListener('load', function () { if (!heard) timer = setTimeout(function () { if (!heard) showFallback(); }, 4000); });
-    frame.addEventListener('error', showFallback);
   });
 
   // Intro: remove it when it finishes, or straight away on a click, key press, scroll or swipe

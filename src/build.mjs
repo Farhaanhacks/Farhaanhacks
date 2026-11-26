@@ -94,19 +94,29 @@ function header(path) {
 }
 
 function enquire({ title = 'Get in Touch', intro = '' } = {}) {
-  // If the form can't load (no connection, blocked, or not set), the box shows how to get in touch instead.
-  const fallback = `<div class="embed-fallback"${CRM_ENQUIRE_URL ? ' hidden' : ''}>
-        <strong>Send us an enquiry</strong>
-        <span>Call or email us and we'll help you find the right course.</span>
-        <div class="embed-fallback-actions">
-          <a class="btn" href="${contact.phoneHref}">${icon.phone} ${e(contact.phone)}</a>
-          <a class="btn btn--ghost" href="mailto:${contact.email}">${icon.mail} Email us</a>
-        </div>
+  // The enquiry form (same fields as the old Hostinger form). It sends to the CRM, which saves it as a lead.
+  const field = (name, label, input) => `
+        <label class="ef">
+          <span class="ef-label">${label}</span>
+          ${input}
+          <small class="ef-error" data-error-for="${name}" hidden></small>
+        </label>`;
+  const slot = `<form class="enquiry-form" action="${e(CRM_ENQUIRE_URL)}" method="post" data-enquiry>
+        <input type="hidden" name="started" value="">
+        <div class="ef-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <p class="ef-alert" role="alert" hidden></p>
+        ${field('first_name', 'Name*', '<input name="first_name" placeholder="Your name" autocomplete="given-name" required>')}
+        ${field('last_name', 'Last name', '<input name="last_name" placeholder="Your last name" autocomplete="family-name">')}
+        ${field('email', 'Your email*', '<input name="email" type="email" placeholder="Your email address" autocomplete="email" required>')}
+        ${field('phone', 'Contact Number*', '<input name="phone" type="tel" inputmode="tel" placeholder="Phone/ Mobile" autocomplete="tel" required>')}
+        ${field('course_interest', 'Name of the Course*', '<input name="course_interest" placeholder="Short answer" required>')}
+        ${field('message', 'Message*', '<textarea name="message" rows="4" maxlength="1000" placeholder="Enter your message" required></textarea>')}
+        <button class="ef-submit" type="submit">Submit</button>
+      </form>
+      <div class="ef-done" role="status" hidden>
+        <strong>Thanks, we've got your enquiry</strong>
+        <span>Someone from SkillUp SA will be in touch soon.</span>
       </div>`;
-  const slot = CRM_ENQUIRE_URL
-    ? `<iframe src="${e(CRM_ENQUIRE_URL)}" title="Enquiry form" loading="lazy"></iframe>
-      ${fallback}`
-    : fallback;
   return `
 <section class="section section--paper" id="enquire" aria-labelledby="enquire-title">
   <div class="wrap enquire">
@@ -122,7 +132,7 @@ function enquire({ title = 'Get in Touch', intro = '' } = {}) {
       ${socialLinks()}
     </div>
     <div class="embed-slot" data-crm-embed>
-      <!-- The CRM's enquiry form (CRM_ENQUIRE_URL in src/site.mjs); each enquiry becomes a lead in the CRM -->
+      <!-- Enquiry form: sends to the CRM (CRM_ENQUIRE_URL in src/site.mjs), which saves each enquiry as a lead -->
       ${slot}
     </div>
   </div>

@@ -33,14 +33,14 @@ Pointing skillupsa.com.au at this site is a separate step, done later in the dom
 | `public/img/` | Every image from the live site, downloaded, renamed and compressed (11 MB, down from 37 MB) |
 | `vercel.json` | Ready for Vercel: build command, output folder, clean URLs, `/contact-zUntuk` → `/contact` redirect |
 
-## The CRM enquiry form
+## The enquiry form
 
-Every page ends with a "Get in Touch" section. Its right-hand box shows the CRM's enquiry form (the website version at `/enquire/embed`, with no header of its own). Each enquiry becomes a lead in the CRM, marked as coming from the website form.
+Every page ends with a "Get in Touch" section with an enquiry form (the same fields as the old Hostinger form: Name, Last name, Your email, Contact Number, Name of the Course, Message). It sends to the CRM, which saves each enquiry as a lead (source: Website form) on its Leads screen.
 
-- The address is `CRM_ENQUIRE_URL` in `src/site.mjs` (currently `https://skillupsacrm.vercel.app/enquire/embed`). Change it there, or with a `CRM_ENQUIRE_URL` environment variable in Vercel, e.g. when the CRM moves to `crm.skillupsa.com.au`.
-- The form tells the page how tall it is, so the box always fits it.
-- If the form can't load (offline, CRM down, or the site isn't allowed to show it), the box shows the phone number and an email button instead.
-- The CRM only lets skillupsa.com.au (and, for now, `project-eo6yn.vercel.app`) show the form. That list is in the CRM's `next.config.ts`.
+- The form sends to `CRM_ENQUIRE_URL` in `src/site.mjs` (currently `https://skillupsacrm.vercel.app/api/enquire`). Change it there, or with a `CRM_ENQUIRE_URL` environment variable in Vercel, e.g. when the CRM moves to `crm.skillupsa.com.au`.
+- The CRM checks the details; its messages show under the fields. After sending, the form is replaced by a thank-you message.
+- If the enquiry can't be sent, the form says so and gives the phone number and email.
+- The CRM only accepts enquiries from skillupsa.com.au, www.skillupsa.com.au and (for now) `project-eo6yn.vercel.app`. That list is in the CRM's `src/app/api/enquire/route.ts`.
 
 ## Design
 
