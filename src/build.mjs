@@ -340,7 +340,7 @@ page('/', layout({
 
 <section class="section" aria-labelledby="corp-title">
   <div class="wrap">
-    <div class="corporate-media">${img('corporate-programs', 'people meeting in room', { sizes: '100vw' })}</div>
+    <div class="corporate-media">${img('corporate-team', 'A trainer leading a workshop with a group of adults around a table', { sizes: '100vw' })}</div>
     <div class="corporate">
       <div>
         <p class="eyebrow">For employers</p>
