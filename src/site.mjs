@@ -8,7 +8,9 @@ export const descriptions = JSON.parse(readFileSync(new URL('./descriptions.json
 
 // Where the CRM's public enquiry form lives. Leave empty to show the placeholder.
 // Example: 'https://crm.skillupsa.com.au/enquire'
-export const CRM_ENQUIRE_URL = process.env.CRM_ENQUIRE_URL || '';
+// The CRM's enquiry form, shown in the "Get in Touch" box (website version, no header). Change it here or with the
+// CRM_ENQUIRE_URL environment variable, e.g. once the CRM moves to crm.skillupsa.com.au.
+export const CRM_ENQUIRE_URL = process.env.CRM_ENQUIRE_URL || 'https://skillupsacrm.vercel.app/enquire/embed';
 
 export const contact = {
   street: '39 - 44 Patterson Street,',

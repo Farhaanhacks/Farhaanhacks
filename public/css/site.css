@@ -440,11 +440,13 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   padding: clamp(24px, 3vw, 40px); box-shadow: 0 40px 80px -60px rgba(1,12,128,.45);
 }
 .embed-slot::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy) 0 40%, var(--blue) 40% 75%, var(--sky) 75%); border-radius: 12px 12px 0 0; }
-.embed-slot iframe { display: block; width: 100%; min-height: 760px; border: 0; }
-.embed-placeholder { min-height: 460px; display: grid; place-content: center; text-align: center; gap: 10px; border: 2px dashed var(--line); border-radius: 8px; padding: 32px; color: var(--ink-soft); }
-.embed-placeholder strong { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); font-weight: 560; }
-.embed-placeholder code { font-size: 0.9rem; background: var(--paper); padding: 4px 8px; border-radius: 4px; color: var(--navy); }
-.embed-placeholder .small { font-size: 0.95rem; max-width: 40ch; margin: 0 auto; }
+.embed-slot iframe { display: block; width: 100%; height: 640px; border: 0; transition: height .2s ease; }
+.embed-slot.is-fallback iframe { display: none; }
+.embed-fallback { min-height: 320px; display: grid; place-content: center; text-align: center; gap: 12px; padding: 24px 8px; color: var(--ink-soft); }
+.embed-fallback[hidden] { display: none; }
+.embed-fallback strong { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); font-weight: 560; }
+.embed-fallback-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
+.embed-fallback-actions svg { width: 18px; height: 18px; }
 
 /* ---------------------------------------------------------------- Footer */
 .site-footer { background: var(--navy); color: rgba(255,255,255,.82); font-size: 1rem; }
@@ -609,7 +611,6 @@ a.award:hover strong { text-decoration: underline; text-underline-offset: 4px; }
   .corporate-media { aspect-ratio: 4 / 3; }
   .footer-top { grid-template-columns: minmax(0, 1fr); }
   .summary--units > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .embed-placeholder { min-height: 320px; }
   .outro { padding: 24px; }
 }
 

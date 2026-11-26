@@ -94,14 +94,19 @@ function header(path) {
 }
 
 function enquire({ title = 'Get in Touch', intro = '' } = {}) {
-  const slot = CRM_ENQUIRE_URL
-    ? `<iframe src="${e(CRM_ENQUIRE_URL)}" title="Enquiry form" loading="lazy"></iframe>`
-    : `<div class="embed-placeholder">
-        <strong>Enquiry form</strong>
-        <span>The CRM’s enquiry form will be embedded here.</span>
-        <code>&lt;iframe src="https://&lt;CRM address&gt;/enquire"&gt;</code>
-        <span class="small">Set <code>CRM_ENQUIRE_URL</code> in <code>src/site.mjs</code> and rebuild.</span>
+  // If the form can't load (no connection, blocked, or not set), the box shows how to get in touch instead.
+  const fallback = `<div class="embed-fallback"${CRM_ENQUIRE_URL ? ' hidden' : ''}>
+        <strong>Send us an enquiry</strong>
+        <span>Call or email us and we'll help you find the right course.</span>
+        <div class="embed-fallback-actions">
+          <a class="btn" href="${contact.phoneHref}">${icon.phone} ${e(contact.phone)}</a>
+          <a class="btn btn--ghost" href="mailto:${contact.email}">${icon.mail} Email us</a>
+        </div>
       </div>`;
+  const slot = CRM_ENQUIRE_URL
+    ? `<iframe src="${e(CRM_ENQUIRE_URL)}" title="Enquiry form" loading="lazy"></iframe>
+      ${fallback}`
+    : fallback;
   return `
 <section class="section section--paper" id="enquire" aria-labelledby="enquire-title">
   <div class="wrap enquire">
@@ -117,7 +122,7 @@ function enquire({ title = 'Get in Touch', intro = '' } = {}) {
       ${socialLinks()}
     </div>
     <div class="embed-slot" data-crm-embed>
-      <!-- CRM enquiry form embed: iframe of https://<CRM address>/enquire -->
+      <!-- The CRM's enquiry form (CRM_ENQUIRE_URL in src/site.mjs); each enquiry becomes a lead in the CRM -->
       ${slot}
     </div>
   </div>

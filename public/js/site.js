@@ -172,6 +172,26 @@
     measure();
   });
 
+  // Enquiry form from the CRM: the frame takes the form's height (the CRM sends it), and if the form doesn't
+  // report in shortly after loading (offline, blocked, CRM down), the box shows the phone and email instead.
+  document.querySelectorAll('[data-crm-embed]').forEach(function (slot) {
+    var frame = slot.querySelector('iframe');
+    var fallback = slot.querySelector('.embed-fallback');
+    if (!frame || !fallback) return;
+    var origin; try { origin = new URL(frame.src).origin; } catch (err) { return; }
+    var heard = false, timer;
+    function showFallback() { slot.classList.add('is-fallback'); fallback.hidden = false; }
+    window.addEventListener('message', function (ev) {
+      if (ev.origin !== origin || ev.source !== frame.contentWindow || !ev.data || ev.data.type !== 'skillup-enquire-height') return;
+      heard = true; clearTimeout(timer);
+      slot.classList.remove('is-fallback'); fallback.hidden = true;
+      var h = Number(ev.data.height);
+      if (h > 100 && h < 4000) frame.style.height = h + 'px';
+    });
+    frame.addEventListener('load', function () { if (!heard) timer = setTimeout(function () { if (!heard) showFallback(); }, 4000); });
+    frame.addEventListener('error', showFallback);
+  });
+
   // Intro: remove it when it finishes, or straight away on a click, key press, scroll or swipe
   var intro = document.querySelector('.intro');
   if (intro && document.documentElement.classList.contains('has-intro')) {
