@@ -59,6 +59,7 @@ Every page ends with a "Get in Touch" section with an enquiry form (the same fie
 - Home: the "Boost your Computer Skills" section is removed.
 - Bigger logo in the header.
 - The "Be future-proof and future-ready" band is shorter.
+- The office address is 40-44 Patterson Street, Whyalla SA 5600 everywhere (the old site said "39 - 44" in the footer). The map pin uses the same address.
 - Opening hours are Monday - Friday 9:00 - 17:00 only (Saturday and Sunday removed), in the footer and on the Contact page.
 - The award banner (and the award line in the footer) links to the SA Training Awards ACE Provider of the Year page. The Government of SA logo opens the same page (change `GOV_SUPPORT_URL` in `src/site.mjs` to point it elsewhere). Both open in a new tab.
 - The header logo no longer touches the award banner.
@@ -102,7 +103,6 @@ These were kept word-for-word. Ask the client before changing them:
 1. **Workforce Readiness** and **Workplace Communication Basics** appear to have swapped page content. Each page's text describes the other course.
 2. "Workplace Numeracy **Essentails** Course" is misspelled in the page heading.
 3. Problem-Solving page: "…enhance their related to problem-solving and career planning skills" has a word missing.
-4. The address in the footer is "39 - 44 Patterson Street" but the map pin is "40-44 Patterson Street".
-5. The Contact page lists a postal address in Walkerville, Adelaide, while the footer address is in Whyalla. Both are kept.
-6. Several course pages refer to the course by another name. Examples: "Mastery Catalyst: Strategic Leadership Accelerator" on Impact, and "Leadership Prodigy" on Leadership and Management.
-7. The ACE programme pages are flyer images only, so their text isn't readable by search engines or screen readers. The flyer text could be written into the pages.
+4. The Contact page lists a postal address in Walkerville, Adelaide, while the office address is in Whyalla. Both are kept.
+5. Several course pages refer to the course by another name. Examples: "Mastery Catalyst: Strategic Leadership Accelerator" on Impact, and "Leadership Prodigy" on Leadership and Management.
+6. The ACE programme pages are flyer images only, so their text isn't readable by search engines or screen readers. The flyer text could be written into the pages.

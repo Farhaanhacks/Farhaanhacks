@@ -13,7 +13,7 @@ export const descriptions = JSON.parse(readFileSync(new URL('./descriptions.json
 export const CRM_ENQUIRE_URL = process.env.CRM_ENQUIRE_URL || 'https://skillupsacrm.vercel.app/api/enquire';
 
 export const contact = {
-  street: '39 - 44 Patterson Street,',
+  street: '40-44 Patterson Street,',
   suburb: 'Whyalla SA 5600',
   phone: '0405 124 211',
   phoneHref: 'tel:+61405124211',
